@@ -4,14 +4,14 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="None">
         
         
-        <link rel="shortcut icon" href="img/favicon.ico">
-        <title>Talentaylor's Page</title>
-        <link href="css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">
+        
+        <link rel="shortcut icon" href="../../../../img/favicon.ico">
+        <title>Useful Extras - Talentaylor's Page</title>
+        <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/color-brewer.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -19,13 +19,13 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <script src="js/jquery-1.10.2.min.js" defer></script>
-        <script src="js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="../../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../../js/bootstrap-3.0.3.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
-    <body class="homepage">
+    <body>
 
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
@@ -39,7 +39,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href=".">Talentaylor's Page</a>
+                    <a class="navbar-brand" href="../../../..">Talentaylor's Page</a>
                 </div>
 
                 <!-- Expanded navigation -->
@@ -51,19 +51,19 @@
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="language_learning/CSharpContent/">C#</a>
+    <a href="../../../CSharpContent/">C#</a>
 </li>
                                     
 <li >
-    <a href="language_learning/PythonContent/">Python</a>
+    <a href="../../../PythonContent/">Python</a>
 </li>
                                     
 <li >
-    <a href="language_learning/OpenGLContent/">OpenGL</a>
+    <a href="../../../OpenGLContent/">OpenGL</a>
 </li>
                                     
 <li >
-    <a href="language_learning/WiXTutorial/WiX_Toolset_Tutorial/">WiXToolset</a>
+    <a href="../../WiX_Toolset_Tutorial/">WiXToolset</a>
 </li>
                                 </ul>
                             </li>
@@ -72,20 +72,20 @@
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="interests/build_blog/">blog</a>
+    <a href="../../../../interests/build_blog/">blog</a>
 </li>
                                     
 <li >
-    <a href="interests/git/git/">git</a>
+    <a href="../../../../interests/git/git/">git</a>
 </li>
                                     
 <li >
-    <a href="interests/markdown/">Markdown</a>
+    <a href="../../../../interests/markdown/">Markdown</a>
 </li>
                                 </ul>
                             </li>
                             <li >
-                                <a href="about_me/">关于我</a>
+                                <a href="../../../../about_me/">关于我</a>
                             </li>
                         </ul>
 
@@ -103,13 +103,51 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#talentaylors-page">Talentaylor's Page</a></li>
+        <li class="main active"><a href="#useful-extras">Useful Extras</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="talentaylors-page">Talentaylor's Page</h1>
-<p>Welcome to Talentaylor's Page!</p></div>
+<h1 id="useful-extras">Useful Extras</h1>
+<p>Needless to say, we can do much more than to simply copy a couple of files around. To start with, we can have launch conditions: we check for some global settings and stop the installation if our conditions are not met. Just add this line to our previous sample somewhere not within a feature (for instance, between the <code>Package</code> and <code>Media</code> tags) and it will refuse to run if you're not an administrator on your machine:</p>
+<pre><code class="xml">&lt;Condition Message=&quot;You need to be an administrator to install this product.&quot;&gt;
+    Privileged
+&lt;/Condition&gt;
+</code></pre>
+
+<p>On Vista, use:</p>
+<pre><code class="xml">&lt;Condition Message=&quot;You need to be an administrator to install this product.&quot;&gt;
+    AdminUser
+&lt;/Condition&gt;
+</code></pre>
+
+<p>Note that the messages will appear and the installation will be aborted if the condition between the starting and closing tags evaluates to <em>false</em>. In other words, don't specify the error condition, specify the case you want to proceed with the installation in:</p>
+<pre><code class="xml">&lt;Condition Message='This application only runs on Windows 95/98/ME.'&gt;
+    Version9X
+&lt;/Condition&gt;
+</code></pre>
+
+<p>There are quite a few standard properties you can use in similar conditions but the most important ones would be those specifying the version of Windows the setup is running on. <code>Version9X</code> is true on Windows 95, 98 and ME. <code>VersionNT</code> is true on NT 4.0 and later. <code>VersionNT64</code> signals a 64-bit operating system.</p>
+<pre><code class="xml">&lt;Condition Message='Windows 95'&gt;Version9X = 400&lt;/Condition&gt;
+&lt;Condition Message='Windows 95 OSR2.5'&gt;Version9X = 400 AND WindowsBuild = 1111&lt;/Condition&gt;
+&lt;Condition Message='Windows 98'&gt;Version9X = 410&lt;/Condition&gt;
+&lt;Condition Message='Windows 98 SE'&gt;Version9X = 410 AND WindowsBuild = 2222&lt;/Condition&gt;
+&lt;Condition Message='Windows ME'&gt;Version9X = 490&lt;/Condition&gt;
+&lt;Condition Message='Windows NT4'&gt;VersionNT = 400&lt;/Condition&gt;
+&lt;Condition Message='Windows NT4 SPn'&gt;VersionNT = 400 AND ServicePackLevel = n&lt;/Condition&gt;
+&lt;Condition Message='Windows 2000'&gt;VersionNT = 500&lt;/Condition&gt;
+&lt;Condition Message='Windows 2000 SPn'&gt;VersionNT = 500 AND ServicePackLevel = n&lt;/Condition&gt;
+&lt;Condition Message='Windows XP'&gt;VersionNT = 501&lt;/Condition&gt;
+&lt;Condition Message='Windows XP SPn'&gt;VersionNT = 501 AND ServicePackLevel = n&lt;/Condition&gt;
+&lt;Condition Message='Windows XP Home SPn'&gt;VersionNT = 501 AND MsiNTSuitePersonal AND ServicePackLevel = n&lt;/Condition&gt;
+&lt;Condition Message='Windows Server 2003'&gt;VersionNT = 502&lt;/Condition&gt;
+&lt;Condition Message='Windows Vista'&gt;VersionNT = 600&lt;/Condition&gt;
+&lt;Condition Message='Windows Vista SP1'&gt;VersionNT = 600 AND ServicePackLevel = 1&lt;/Condition&gt;
+&lt;Condition Message='Windows Server 2008'&gt;VersionNT = 600 AND MsiNTProductType = 3&lt;/Condition&gt;
+&lt;Condition Message='Windows 7'&gt;VersionNT = 601&lt;/Condition&gt;
+</code></pre>
+
+<p>There are <a href="http://msdn.microsoft.com/en-us/library/aa370905(VS.85).aspx#operating_system_properties">many more properties like these</a> to choose from. For instance, <code>MsiNTProductType</code> allows you to differentiate between Workstation, Domain Controller and Server. Be sure to check out the other <code>MsiNT</code> properties as well.</p></div>
         </div>
 
         <footer class="col-md-12">
@@ -117,11 +155,11 @@
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = ".",
+            var base_url = "../../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="js/base.js" defer></script>
-        <script src="search/main.js" defer></script>
+        <script src="../../../../js/base.js" defer></script>
+        <script src="../../../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
     <div class="modal-dialog">
@@ -189,8 +227,3 @@
 
     </body>
 </html>
-
-<!--
-MkDocs version : 1.0.4
-Build Date UTC : 2020-03-03 08:01:19
--->

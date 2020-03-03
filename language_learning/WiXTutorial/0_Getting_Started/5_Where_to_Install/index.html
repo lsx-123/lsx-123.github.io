@@ -4,14 +4,14 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="None">
         
         
-        <link rel="shortcut icon" href="img/favicon.ico">
-        <title>Talentaylor's Page</title>
-        <link href="css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">
+        
+        <link rel="shortcut icon" href="../../../../img/favicon.ico">
+        <title>Where to Install? - Talentaylor's Page</title>
+        <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/color-brewer.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -19,13 +19,13 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <script src="js/jquery-1.10.2.min.js" defer></script>
-        <script src="js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="../../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../../js/bootstrap-3.0.3.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
-    <body class="homepage">
+    <body>
 
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
@@ -39,7 +39,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href=".">Talentaylor's Page</a>
+                    <a class="navbar-brand" href="../../../..">Talentaylor's Page</a>
                 </div>
 
                 <!-- Expanded navigation -->
@@ -51,19 +51,19 @@
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="language_learning/CSharpContent/">C#</a>
+    <a href="../../../CSharpContent/">C#</a>
 </li>
                                     
 <li >
-    <a href="language_learning/PythonContent/">Python</a>
+    <a href="../../../PythonContent/">Python</a>
 </li>
                                     
 <li >
-    <a href="language_learning/OpenGLContent/">OpenGL</a>
+    <a href="../../../OpenGLContent/">OpenGL</a>
 </li>
                                     
 <li >
-    <a href="language_learning/WiXTutorial/WiX_Toolset_Tutorial/">WiXToolset</a>
+    <a href="../../WiX_Toolset_Tutorial/">WiXToolset</a>
 </li>
                                 </ul>
                             </li>
@@ -72,20 +72,20 @@
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="interests/build_blog/">blog</a>
+    <a href="../../../../interests/build_blog/">blog</a>
 </li>
                                     
 <li >
-    <a href="interests/git/git/">git</a>
+    <a href="../../../../interests/git/git/">git</a>
 </li>
                                     
 <li >
-    <a href="interests/markdown/">Markdown</a>
+    <a href="../../../../interests/markdown/">Markdown</a>
 </li>
                                 </ul>
                             </li>
                             <li >
-                                <a href="about_me/">关于我</a>
+                                <a href="../../../../about_me/">关于我</a>
                             </li>
                         </ul>
 
@@ -103,13 +103,43 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#talentaylors-page">Talentaylor's Page</a></li>
+        <li class="main active"><a href="#where-to-install">Where to Install?</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="talentaylors-page">Talentaylor's Page</h1>
-<p>Welcome to Talentaylor's Page!</p></div>
+<h1 id="where-to-install">Where to Install?</h1>
+<p>Standalone applications will be installed into their own folders under <code>Program Files</code>---we've already seen how to accomplish this. But plugins, add-ons or similar additional products, not meant for standalone use but to accompany other programs already installed on the system (either your own or some third party) has to learn when and where to install themselves first. Asking the user to provide this information would be both inelegant and possibly dangerous in many cases, thus we need means of querying the registry, to consult .ini files already on the system or to look for actual folders and files to determine what to do.</p>
+<p>When we look for any of those items, the result will be stored in a property (a string variable). So, we start by specifying the property (note that the <code>Id</code> we use is the same name we've already used in our first sample, denoting the target folder we install to). Inside the <code>Property</code> tag, we launch a registry search. The attributes speak for themselves:</p>
+<pre><code class="xml">&lt;Property Id=&quot;INSTALLDIR&quot;&gt;
+    &lt;RegistrySearch Id='AcmeFoobarRegistry' Type='raw' Root='HKLM' Key='Software\Acme\Foobar 1.0' Name='InstallDir' /&gt;
+&lt;/Property&gt;
+</code></pre>
+
+<p>If the registry search was successful (that is, the registry entry specified does exist), its value will be assigned to our <code>INSTALLDIR</code> property, ready to be used for our purposes. To check this out, add this line after the <code>Media</code> tag in our previous sample and save it to SampleRegistry.wxs (or, just <a href="https://www.firegiant.com/system/files/samples/SampleRegistry.zip">download it</a> again). Compile it but before you start the installation, go into the registry and create the <code>HKEY_LOCAL_MACHINE\SOFTWARE\Acme\Foobar 1.0</code> key. Create a new string value named <code>InstallDir</code> and set it to an empty folder you've just created anywhere on your system. Run the installer with logging enabled.</p>
+<p>If you did everything right, our three sample files will appear in this new folder. Also note the shortcuts (in the Start Menu and on the Desktop) to point to this new location now.</p>
+<p>Similar information can come from other sources as well. Let's assume a <code>\Windows\SampleRegistry.ini</code> file (you can only read these files if they are located in the system folder):</p>
+<pre><code class="ini">[Sample]
+InstallDir=C:\InstallHere
+</code></pre>
+
+<p>Replace the previous section with this new one:</p>
+<pre><code class="xml">&lt;Property Id=&quot;INSTALLDIR&quot;&gt;
+    &lt;IniFileSearch Id='AcmeFoobarIniFile' Type='directory' Name='SampleRegistry.ini' Section='Sample' Key='InstallDir' /&gt;
+&lt;/Property&gt;
+</code></pre>
+
+<p>There might be cases when simply knowing the folder is not enough: you have to look into the folder and make sure a given file exists there. <code>Depth=n</code> can be used to instruct the installer to look <em>n</em> levels deeper than the specified <code>Path</code>. Zero or a missing <code>Depth</code> attribute means only to look in the specified folder, not below it. We use square brackets in <code>Path</code> to tell the installer to use the value of the <code>INSTALLDIR</code> property---bracketed names will be looked up and if found, replaced with their actual value. If not found, the string will remain unchanged.</p>
+<pre><code class="xml">&lt;Property Id=&quot;FILEEXISTS&quot;&gt;
+    &lt;DirectorySearch Id=&quot;CheckFileDir&quot; Path=&quot;[INSTALLDIR]&quot; Depth=&quot;0&quot;&gt;
+        &lt;FileSearch Id=&quot;CheckFile&quot; Name=&quot;Lookfor.txt&quot; /&gt;
+    &lt;/DirectorySearch&gt;
+&lt;/Property&gt;
+</code></pre>
+
+<p>If the file has been found, its full path will be assigned to the <code>FILEEXISTS</code> property, otherwise it will be left unassigned. You can check this if you build this sample (you need both the previous <code>RegistrySearch</code> and this fragment) and then run it with logging enabled. Observe that if you first put the file <code>Lookfor.txt</code> into the folder specified in the registry, the log will contain a reference to <code>FILEEXISTS</code>, with the full path of the file as its value.</p>
+<p>Although we don't yet have a user interface, it's already worth noting that properties meant to receive their value from any interaction with the user, passing that value to the installation logic (eg. destination folders or features selected by the user) need to be <em>public</em> properties. To ensure their public status, their name has to be in all uppercase letters.</p>
+<p>It is also worth noting that Windows Installer has better ways of upgrading your product than to look for specific registry entries of the previous installation. You should use these features whenever you can---but you need some patience until we reach them during our discussion.</p></div>
         </div>
 
         <footer class="col-md-12">
@@ -117,11 +147,11 @@
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = ".",
+            var base_url = "../../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="js/base.js" defer></script>
-        <script src="search/main.js" defer></script>
+        <script src="../../../../js/base.js" defer></script>
+        <script src="../../../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
     <div class="modal-dialog">
@@ -189,8 +219,3 @@
 
     </body>
 </html>
-
-<!--
-MkDocs version : 1.0.4
-Build Date UTC : 2020-03-03 08:01:19
--->

@@ -4,14 +4,14 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="None">
         
         
-        <link rel="shortcut icon" href="img/favicon.ico">
-        <title>Talentaylor's Page</title>
-        <link href="css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">
+        
+        <link rel="shortcut icon" href="../../../../img/favicon.ico">
+        <title>Putting it to Use - Talentaylor's Page</title>
+        <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/color-brewer.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -19,13 +19,13 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <script src="js/jquery-1.10.2.min.js" defer></script>
-        <script src="js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="../../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../../js/bootstrap-3.0.3.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
-    <body class="homepage">
+    <body>
 
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
@@ -39,7 +39,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href=".">Talentaylor's Page</a>
+                    <a class="navbar-brand" href="../../../..">Talentaylor's Page</a>
                 </div>
 
                 <!-- Expanded navigation -->
@@ -51,19 +51,19 @@
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="language_learning/CSharpContent/">C#</a>
+    <a href="../../../CSharpContent/">C#</a>
 </li>
                                     
 <li >
-    <a href="language_learning/PythonContent/">Python</a>
+    <a href="../../../PythonContent/">Python</a>
 </li>
                                     
 <li >
-    <a href="language_learning/OpenGLContent/">OpenGL</a>
+    <a href="../../../OpenGLContent/">OpenGL</a>
 </li>
                                     
 <li >
-    <a href="language_learning/WiXTutorial/WiX_Toolset_Tutorial/">WiXToolset</a>
+    <a href="../../WiX_Toolset_Tutorial/">WiXToolset</a>
 </li>
                                 </ul>
                             </li>
@@ -72,20 +72,20 @@
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="interests/build_blog/">blog</a>
+    <a href="../../../../interests/build_blog/">blog</a>
 </li>
                                     
 <li >
-    <a href="interests/git/git/">git</a>
+    <a href="../../../../interests/git/git/">git</a>
 </li>
                                     
 <li >
-    <a href="interests/markdown/">Markdown</a>
+    <a href="../../../../interests/markdown/">Markdown</a>
 </li>
                                 </ul>
                             </li>
                             <li >
-                                <a href="about_me/">关于我</a>
+                                <a href="../../../../about_me/">关于我</a>
                             </li>
                         </ul>
 
@@ -103,13 +103,33 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#talentaylors-page">Talentaylor's Page</a></li>
+        <li class="main active"><a href="#putting-it-to-use">Putting it to Use</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="talentaylors-page">Talentaylor's Page</h1>
-<p>Welcome to Talentaylor's Page!</p></div>
+<h1 id="putting-it-to-use">Putting it to Use</h1>
+<p>If you copy all these fragments together (or, to spare some elbow grease, download the <a href="https://www.firegiant.com/system/files/samples/SampleFirst.zip">SampleFirst archive</a>), you can build the installer package with the commands:</p>
+<pre><code class="bash">candle.exe SampleFirst.wxs
+light.exe SampleFirst.wixobj
+</code></pre>
+
+<p>You should get no error message from either tool, and you should find a <code>SampleFirst.msi</code> file in your folder upon completion. If not, check for typos everywhere. Please, also note that the required syntax of the .wxs files might undergo some minor changes as the WiX toolset develops.</p>
+<p>This tutorial always assumes the most current version of the WiX toolset and the samples should all compile without any error message straight out of the box (provided you correct the invalid GUIDs as described earlier). If you do receive compiler errors or warnings, please, compare your toolset version to the current one available for download.</p>
+<p>To test your first installer, simply click on it. It will not greet you or offer any options, just show a progress dialog for a few seconds. But as soon as it finishes without errors, you should be able to find your three files in <code>Program Files\Acme\Foobar 1.0</code> all right. Note that the actual files deployed are 1-byte placeholder files, so the installed "application" will, naturally, refuse to run.</p>
+<p>To remove this huge application again, go to the Programs and Features Control Panel tool, find Foobar 1.0 in the list, click <code>Remove</code>. (<code>Change</code> will accomplish nothing at this stage.) Both the three files and the <code>Acme\Foobar 1.0</code> folders will be removed.</p>
+<p>If you experience any problems---or just for fun---start the installer with logging turned on:</p>
+<pre><code class="bash">msiexec /i SampleFirst.msi /l* SampleFirst.log
+</code></pre>
+
+<p>or even</p>
+<pre><code class="bash">msiexec /i SampleFirst.msi /l*v SampleFirst.log
+</code></pre>
+
+<p>The log will be rather verbose (especially in the second case) but it will pinpoint the error that might cause the installation to fail.</p>
+<p>During testing, you might find it more convenient to remove the package without having to open the Programs and Features Control Panel tool. Just enter the command instead:</p>
+<pre><code class="bash">msiexec /x SampleFirst.msi
+</code></pre></div>
         </div>
 
         <footer class="col-md-12">
@@ -117,11 +137,11 @@
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = ".",
+            var base_url = "../../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="js/base.js" defer></script>
-        <script src="search/main.js" defer></script>
+        <script src="../../../../js/base.js" defer></script>
+        <script src="../../../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
     <div class="modal-dialog">
@@ -189,8 +209,3 @@
 
     </body>
 </html>
-
-<!--
-MkDocs version : 1.0.4
-Build Date UTC : 2020-03-03 08:01:19
--->

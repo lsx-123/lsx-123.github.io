@@ -7,11 +7,11 @@
         
         
         
-        <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>OpenGL - Talentaylor's Page</title>
-        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="../../css/font-awesome.min.css" rel="stylesheet">
-        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="shortcut icon" href="../../../../img/favicon.ico">
+        <title>User Interface - Talentaylor's Page</title>
+        <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/color-brewer.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -19,8 +19,8 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="../../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../../js/bootstrap-3.0.3.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
@@ -39,41 +39,53 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="../..">Talentaylor's Page</a>
+                    <a class="navbar-brand" href="../../../..">Talentaylor's Page</a>
                 </div>
 
                 <!-- Expanded navigation -->
                 <div class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="dropdown active">
+                            <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">语言 <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="../CSharp目录/">C#</a>
+    <a href="../../../CSharpContent/">C#</a>
 </li>
                                     
 <li >
-    <a href="../Python目录/">Python</a>
+    <a href="../../../PythonContent/">Python</a>
 </li>
                                     
-<li class="active">
-    <a href="./">OpenGL</a>
+<li >
+    <a href="../../../OpenGLContent/">OpenGL</a>
+</li>
+                                    
+<li >
+    <a href="../../WiX_Toolset_Tutorial/">WiXToolset</a>
 </li>
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">有趣 <b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">工具 <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="../../interests/build_blog/">博客搭建</a>
+    <a href="../../../../interests/build_blog/">blog</a>
+</li>
+                                    
+<li >
+    <a href="../../../../interests/git/git/">git</a>
+</li>
+                                    
+<li >
+    <a href="../../../../interests/markdown/">Markdown</a>
 </li>
                                 </ul>
                             </li>
                             <li >
-                                <a href="../../about_me/">关于我</a>
+                                <a href="../../../../about_me/">关于我</a>
                             </li>
                         </ul>
 
@@ -83,16 +95,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li >
-                                <a rel="next" href="../Python目录/">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li >
-                                <a rel="prev" href="../../interests/build_blog/">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -101,11 +103,34 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#user-interface">User Interface</a></li>
+            <li><a href="#pages-in-this-chapter">Pages in this Chapter</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-</div>
+<h1 id="user-interface">User Interface</h1>
+<p>In the previous lesson we have learned how to describe the files we want to be installed. Although we saw some simple implementations of automated installer logic to determine whether a given product has already been installed previously, everything went without the customary user interface giving the user a chance to say anything about the installation. So this is the topic we will be treating in this installment.</p>
+<p><font face="华文中宋" color=blue>
+上一节中已经学到如何去描述我们想要安装的文件。虽然我们看到了一些使用自动安装逻辑的简单应用，它们决定即将安装的产品是否在此之前已经安装了，但是，并没有通过用户界面给用户一个机会参与到安装过程中。因此我们打算在本次主题的安装讲解中来解决这个问题。
+</font></p>
+<p>The Windows Installer doesn't have its built-in user interface (except for a simple progress dialog we've already seen and a few message boxes popping up to inform the user about various errors). Installer packages have to define their own user interface, compile it and carry it around inside their own .msi file. This makes this file somewhat larger (an .msi file with a typical user interface will start just below 300KB, although this will also depend on the size of the icons and other graphical elements inside) but, in return to this size, will be perfectly customizable to every possible need.</p>
+<p><font face="华文中宋" color=blue>
+Windows Installer 没有内置的UI（除了简单的进度对话框，提示用户的错误消息的消息弹出框）。因此，安装包必须自己指定并编译UI代码，最近随着.msi文件一起发布。这会使得安装包显得有些大（一个带有典型 UI 的 .msi 文件至少300KB，虽然这也依赖于图标和其他图片的大小），但，抛开大小不谈，你可以完美自定义每一种想要实现的需求。
+</font></p>
+<p>It wouldn't be too much fun to start to develop a complete user interface for ourselves. Fortunately, there is no need to do that. The WiX toolset comes with a standard user interface library, WixUI. This user interface is based on the prefabricated interface in the <a href="https://docs.microsoft.com/en-us/windows/win32/msi/platform-sdk-components-for-windows-installer-developers">MSI SDK</a>. The WixUI library provides the complete user interface of a standard installer package, including all standard wizard pages: license agreement, customer information, typical/custom/complete setup types, customization of install target folder, calculation of disk usage requirements, modify/repair/remove and rollback. The only difference is that---for sake of individuality---its dominant color is reddish instead of bluish. However, it only takes to modify a couple of bitmaps and icons if you want to customize that.</p>
+<p><font face="华文中宋" color=blue>
+目前我们自己并不能开发一个完整的UI，所幸的是，我们也没有必要这样做。WiX 自带有一个标准UI库——WixUI，它基于<a href="https://docs.microsoft.com/en-us/windows/win32/msi/platform-sdk-components-for-windows-installer-developers">MSI SDK</a>中预制的界面。WixUI 库提供了一个标准安装包所需的完整UI，包括所有标准向导页：许可页面、用户信息、典型/自定义/完整安装类型、指定安装目录、计算磁盘使用要求、修改/修复/移除/回滚。唯一不同就是，它的主题色是淡红色而不是蓝色。如果你想去自定义它，只能修改一些图片和图标。
+</font></p>
+<h3 id="pages-in-this-chapter">Pages in this Chapter</h3>
+<ul>
+<li><a href="../1_First_Steps/"> First Steps</a></li>
+<li><a href="https://www.firegiant.com/wix/tutorial/user-interface/custom-settings/"> Custom Settings</a></li>
+<li><a href="https://www.firegiant.com/wix/tutorial/user-interface/ui-wizardry/"> UI Wizardry</a></li>
+<li><a href="https://www.firegiant.com/wix/tutorial/user-interface/do-you-speak-english/"> Do You Speak English?</a></li>
+<li><a href="https://www.firegiant.com/wix/tutorial/user-interface/new-link-in-the-chain/"> New Link in the Chain</a></li>
+<li><a href="https://www.firegiant.com/wix/tutorial/user-interface/think-localized/"> Think Localized</a></li>
+</ul></div>
         </div>
 
         <footer class="col-md-12">
@@ -113,11 +138,11 @@
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = "../..",
+            var base_url = "../../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../../../../js/base.js" defer></script>
+        <script src="../../../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
     <div class="modal-dialog">

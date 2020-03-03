@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../../img/favicon.ico">
+        <title>First Steps - Talentaylor's Page</title>
+        <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/color-brewer.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../../../..">Talentaylor's Page</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">语言 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../../../CSharpContent/">C#</a>
+</li>
+                                    
+<li >
+    <a href="../../../PythonContent/">Python</a>
+</li>
+                                    
+<li >
+    <a href="../../../OpenGLContent/">OpenGL</a>
+</li>
+                                    
+<li >
+    <a href="../../WiX_Toolset_Tutorial/">WiXToolset</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">工具 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../../../../interests/build_blog/">blog</a>
+</li>
+                                    
+<li >
+    <a href="../../../../interests/git/git/">git</a>
+</li>
+                                    
+<li >
+    <a href="../../../../interests/markdown/">Markdown</a>
+</li>
+                                </ul>
+                            </li>
+                            <li >
+                                <a href="../../../../about_me/">关于我</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#first-steps">First Steps</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="first-steps">First Steps</h1>
+<p>We will expand our previous sample with a nice user interface. But before we delve into details, download <a href="https://www.firegiant.com/system/files/samples/SampleWixUI.zip">SampleWixUI</a>. Compile and run it to get a feeling about what it can do. Build it with the following commands (we will discuss the new linker command line argument later):</p>
+<pre><code class="bash">candle.exe SampleWixUI.wxs
+light.exe -ext WixUIExtension SampleWixUI.wixobj
+</code></pre>
+
+<p>Try the Custom installation and try to change the target folder you install to. When done, start the installation package again, this time it will allow you to modify or remove the program (the same as you can do in the Programs and Features Control Panel tool by clicking on Change).</p>
+<p>Let's see how we could achieve all this functionality. The first part remains the same---after all, we want to install the same product, the same files, same components, same features:</p>
+<pre><code class="xml">&lt;?xml version='1.0' encoding='windows-1252'?&gt;
+&lt;Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'&gt;
+
+    &lt;Product Name='Foobar 1.0' Id='YOURGUID-86C7-4D14-AEC0-86416A69ABDE' 
+        UpgradeCode='YOURGUID-7349-453F-94F6-BCB5110BA4FD'
+        Language='1033' Codepage='1252' Version='1.0.0' Manufacturer='Acme Ltd.'&gt;
+
+    &lt;Package Id='*' Keywords='Installer' Description=&quot;Acme's Foobar 1.0 Installer&quot;
+        Comments='Foobar is a registered trademark of Acme Ltd.' Manufacturer='Acme Ltd.'
+        InstallerVersion='100' Languages='1033' Compressed='yes' SummaryCodepage='1252' /&gt;
+
+        ...
+
+        &lt;Directory Id=&quot;DesktopFolder&quot; Name=&quot;Desktop&quot; /&gt;
+    &lt;/Directory&gt;
+</code></pre>
+
+<p>No surprise so far. The structure of the following segment will also look familiar but we have a couple of new attributes:</p>
+<pre><code class="xml">&lt;Feature Id='Complete' Title='Foobar 1.0' Description='The complete package.'
+    Display='expand' Level='1' ConfigurableDirectory='INSTALLDIR'&gt;
+    &lt;Feature Id='MainProgram' Title='Program' Description='The main executable.' Level='1'&gt;
+        &lt;ComponentRef Id='MainExecutable' /&gt;
+        &lt;ComponentRef Id='HelperLibrary' /&gt;
+        &lt;ComponentRef Id='ProgramMenuDir' /&gt;
+    &lt;/Feature&gt;
+
+    &lt;Feature Id='Documentation' Title='Description' Description='The instruction manual.' Level='1000'&gt;
+        &lt;ComponentRef Id='Manual' /&gt;
+    &lt;/Feature&gt;
+&lt;/Feature&gt;
+</code></pre>
+
+<p>We will have a user interface now, so we need to display something to the user, to inform them about the choice of features they have. Hence the need for some human readable descriptions. Start the compiled installer package again and navigate to the custom setup so that you can see where and how the various UI texts appear.</p>
+<p>The contents of the <code>Title</code> attributes are used to populate the treeview on the left of the dialog. The <code>Description</code> texts will appear on the right side inside the rectangle when you click on an item in the tree. The <code>Display</code> attribute (possible values are <em>collapse</em>, <em>expand</em>, and <em>hidden</em>) determines whether the specified tree part will be displayed collapsed or expanded initially, or will not be displayed at all.</p>
+<p><code>Level</code> allows us to decide which features will be installed. The usual scenario is to offer three choices to the user: <em>Typical</em>, <em>Complete</em>, and <em>Custom</em>. The last two are simple (<em>Complete</em> includes everything and <em>Custom</em> will allow the user to specify everything in finer details) but we have to specify what belongs to <em>Typical</em>. Or, if necessary, we can have more choices. When the installer runs, there will be a prefabricated property called <code>INSTALLLEVEL</code> that can have any value between 1 and 32,767. A feature will be installed if its level is non-zero and not higher than the current value of <code>INSTALLLEVEL</code>.</p>
+<p>In our user interface, we will set this <code>INSTALLLEVEL</code> to 3 for a Typical installation and to 1,000 for a Complete one (this second number is rather arbitrary, we could use any other available number). Consequently, we have to mark those features we don't want to include in a Typical with this level. As <code>INSTALLLEVEL</code> will be 3 during such an installation, only those features having a level of 1 to 3 will be installed, anything above that---including our <code>Level=1000</code> features---will be left alone.</p>
+<p>And finally, the most important part: <code>ConfigurableDirectory.</code> By including this attribute and making it refer to <code>INSTALLDIR</code>, thus creating the link to the intended target directory as specified in the innermost <code>Directory</code> tag a few lines earlier, we allow the user to change our originally intended target. If we don't use this attribute, the user can enable and disable the various features the same way but won't be able to modify the installation directory.</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../../js/base.js" defer></script>
+        <script src="../../../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

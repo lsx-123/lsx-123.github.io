@@ -7,11 +7,11 @@
         
         
         
-        <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>C# - Talentaylor's Page</title>
-        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="../../css/font-awesome.min.css" rel="stylesheet">
-        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="shortcut icon" href="../../../../img/favicon.ico">
+        <title>Creating a Database - Talentaylor's Page</title>
+        <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/color-brewer.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -19,8 +19,8 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="../../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../../js/bootstrap-3.0.3.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
@@ -39,41 +39,53 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="../..">Talentaylor's Page</a>
+                    <a class="navbar-brand" href="../../../..">Talentaylor's Page</a>
                 </div>
 
                 <!-- Expanded navigation -->
                 <div class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="dropdown active">
+                            <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">语言 <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
-<li class="active">
-    <a href="./">C#</a>
+<li >
+    <a href="../../../CSharpContent/">C#</a>
 </li>
                                     
 <li >
-    <a href="../Python目录/">Python</a>
+    <a href="../../../PythonContent/">Python</a>
 </li>
                                     
 <li >
-    <a href="../OpenGL目录/">OpenGL</a>
+    <a href="../../../OpenGLContent/">OpenGL</a>
+</li>
+                                    
+<li >
+    <a href="../../WiX_Toolset_Tutorial/">WiXToolset</a>
 </li>
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">有趣 <b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">工具 <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="../../interests/build_blog/">博客搭建</a>
+    <a href="../../../../interests/build_blog/">blog</a>
+</li>
+                                    
+<li >
+    <a href="../../../../interests/git/git/">git</a>
+</li>
+                                    
+<li >
+    <a href="../../../../interests/markdown/">Markdown</a>
 </li>
                                 </ul>
                             </li>
                             <li >
-                                <a href="../../about_me/">关于我</a>
+                                <a href="../../../../about_me/">关于我</a>
                             </li>
                         </ul>
 
@@ -83,16 +95,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="disabled">
-                                <a rel="next" >
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li >
-                                <a rel="prev" href="../Python目录/">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -101,16 +103,47 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#c">C#使用技巧</a></li>
-            <li><a href="#c_1">C#基础</a></li>
+        <li class="main active"><a href="#creating-a-database">Creating a Database</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="c">C#使用技巧</h1>
-<h2 id="c_1">C#基础</h2>
-<p><a href="../CSharp/获取系统环境变量/">获取系统环境变量</a></p>
-<p><a href="../CSharp/DelegateAndLambdaExpression/">委托、匿名方法、Lambda表达式的一个应用实例</a></p></div>
+<h1 id="creating-a-database">Creating a Database</h1>
+<p>To create an SQL database, we first need a user with the proper credentials. The user name and password are stored in properties, you can use any usual UI elements or custom actions to set them. Note that this is the same <code>User</code> tag we used to <a href="https://www.firegiant.com/wix/tutorial/com-expression-syntax-miscellanea/new-user-on-the-block">create a new user account</a> but it was used inside a <code>Component</code> tag then. Outside any component, it will not create the user, it only will define the credentials for other operations to use. As the tags, as well as the SQL functionality, are present in extension modules, we have to mention them in the opening tag of the source file:</p>
+<pre><code class="xml">&lt;Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'
+  xmlns:util='http://schemas.microsoft.com/wix/UtilExtension'
+  xmlns:sql='http://schemas.microsoft.com/wix/SqlExtension'&gt;
+</code></pre>
+
+<p>Also, because they belong the their own namespace, we have to decorate them during use:</p>
+<pre><code class="xml">&lt;util:User Id='SQLUser' Name='[SQLUSER]' Password='[SQLPASSWORD]' /&gt;
+</code></pre>
+
+<p>The creation of the database itself goes into a component, as usual. <code>SqlDatabase</code> refers to the previous <code>User</code> declaration, specifies the database name, server and instance. Not specifying <code>Server</code> will make it install on the SQL Server running on the target machine. Other attributes specify how to proceed in different situations. <code>ConfirmOverwrite</code> determines what to do if the database already exists and the <code>CreateOnInstall</code>, <code>CreateOnUninstall</code>, <code>DropOnInstall</code>, and <code>DropOnUninstall</code> attributes dictate the required behavior on install and uninstall.</p>
+<p>The nested <code>SqlScript</code> tag will determine what to do with the empty database just created. We can execute any valid SQL script here, residing in a separate file. The <code>BinaryKey</code> attribute will provide the link to the .sql script file. Other attributes will specify the behavior if an error occurs (<code>ContinueOnError</code>) or will determine when to execute the script (<code>ExecuteOnInstall</code>, <code>ExecuteOnUninstall</code>, <code>RollbackOnInstall</code>, <code>RollbackOnUninstall</code>). With more than one script present for execution, they can be sequenced using the <code>Sequence</code> attribute.</p>
+<pre><code class="xml">&lt;Component Id='SqlComponent' Guid='YOURGUID-D8C7-4102-BA84-9702188FA316'&gt;
+  &lt;sql:SqlDatabase Id='SqlDatabase' Database='Foobar' User='SQLUser' Server='[SQLSERVER]'
+    CreateOnInstall='yes' DropOnUninstall='yes' ContinueOnError='yes'&gt;
+    &lt;sql:SqlScript Id='CreateTable' BinaryKey='CreateTable' ExecuteOnInstall='yes' /&gt;
+  &lt;/sql:SqlDatabase&gt;
+&lt;/Component&gt;
+</code></pre>
+
+<p>All that remains is to include the .sql file:</p>
+<pre><code class="xml">&lt;Binary Id='CreateTable' SourceFile='CreateTable.sql' /&gt;
+</code></pre>
+
+<p>The file it refers to will contain usual SQL commands to create a database table:</p>
+<pre><code class="sql">CREATE TABLE Test (Value1 CHAR(50), Value2 INTEGER)
+CREATE INDEX TestIndex ON Test (Value1)
+</code></pre>
+
+<p>When building the installation package, you have to link it against the appropriate WiX modules:</p>
+<pre><code class="bash">candle.exe -ext WixUtilExtension -ext WixSqlExtension SampleSQL.wxs
+light.exe -ext WixUtilExtension -ext WixSqlExtension SampleSQL.wixobj
+</code></pre>
+
+<p>You can download the complete <a href="https://www.firegiant.com/system/files/samples/SampleSQL.zip">SampleSQL</a>.</p></div>
         </div>
 
         <footer class="col-md-12">
@@ -118,11 +151,11 @@
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = "../..",
+            var base_url = "../../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../../../../js/base.js" defer></script>
+        <script src="../../../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
     <div class="modal-dialog">

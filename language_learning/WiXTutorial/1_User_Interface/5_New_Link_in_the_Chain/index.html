@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../../img/favicon.ico">
+        <title>New Link in the Chain - Talentaylor's Page</title>
+        <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/color-brewer.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../../../..">Talentaylor's Page</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">语言 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../../../CSharpContent/">C#</a>
+</li>
+                                    
+<li >
+    <a href="../../../PythonContent/">Python</a>
+</li>
+                                    
+<li >
+    <a href="../../../OpenGLContent/">OpenGL</a>
+</li>
+                                    
+<li >
+    <a href="../../WiX_Toolset_Tutorial/">WiXToolset</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">工具 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../../../../interests/build_blog/">blog</a>
+</li>
+                                    
+<li >
+    <a href="../../../../interests/git/git/">git</a>
+</li>
+                                    
+<li >
+    <a href="../../../../interests/markdown/">Markdown</a>
+</li>
+                                </ul>
+                            </li>
+                            <li >
+                                <a href="../../../../about_me/">关于我</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#new-link-in-the-chain">New Link in the Chain</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="new-link-in-the-chain">New Link in the Chain</h1>
+<p>Although the WixUI interface libraries can handle most usual setup scenarios, modifications or additions are sometimes required. To handle these cases, the <a href="http://wix.codeplex.com/SourceControl/list/changesets">WiX source code</a> has to be downloaded, too, because we will need to take a peek at some source files.</p>
+<p>In our <a href="https://www.firegiant.com/system/files/samples/SampleWixUIAddDlg.zip">sample</a>, we will modify the <em>WixUI_Mondo</em> library, adding a new dialog to collect registration information (name, organization, serial number) from the user. The new dialog will appear between the License Agreement and Setup Type dialogs.</p>
+<p>To achieve this, we have to provide a new <code>UserRegistrationDlg.wxs</code> file describing this new dialog. You can start with an existing dialog, modifying it, or writing your dialog from scratch. A <a href="https://www.firegiant.com/wix/tutorial/user-interface-revisited">later lesson</a> describes how to create dialogs and use various interface elements in WiX. Here we only mention a few remarks:</p>
+<pre><code class="xml">&lt;?xml version='1.0' encoding='windows-1252'?&gt;
+&lt;Wix xmlns=&quot;http://schemas.microsoft.com/wix/2006/wi&quot;&gt;
+</code></pre>
+
+<p>We have to author the new dialog as a separate fragment:</p>
+<pre><code class="xml">&lt;Fragment&gt;
+    &lt;UI&gt;
+        &lt;Dialog Id=&quot;UserRegistrationDlg&quot; Width=&quot;370&quot; Height=&quot;270&quot; Title=&quot;[ProductName] Setup&quot; NoMinimize=&quot;yes&quot;&gt;
+            &lt;Control Id=&quot;NameLabel&quot; Type=&quot;Text&quot; X=&quot;45&quot; Y=&quot;73&quot; Width=&quot;100&quot; Height=&quot;15&quot; TabSkip=&quot;no&quot; Text=&quot;&amp;amp;User Name:&quot; /&gt;
+            &lt;Control Id=&quot;NameEdit&quot; Type=&quot;Edit&quot; X=&quot;45&quot; Y=&quot;85&quot; Width=&quot;220&quot; Height=&quot;18&quot; Property=&quot;USERNAME&quot; Text=&quot;{80}&quot; /&gt;
+            &lt;Control Id=&quot;OrganizationLabel&quot; Type=&quot;Text&quot; X=&quot;45&quot; Y=&quot;110&quot; Width=&quot;100&quot; Height=&quot;15&quot; TabSkip=&quot;no&quot; Text=&quot;&amp;amp;Organization:&quot; /&gt;
+            &lt;Control Id=&quot;OrganizationEdit&quot; Type=&quot;Edit&quot; X=&quot;45&quot; Y=&quot;122&quot; Width=&quot;220&quot; Height=&quot;18&quot; Property=&quot;COMPANYNAME&quot; Text=&quot;{80}&quot; /&gt;
+            &lt;Control Id=&quot;CDKeyLabel&quot; Type=&quot;Text&quot; X=&quot;45&quot; Y=&quot;147&quot; Width=&quot;50&quot; Height=&quot;10&quot; TabSkip=&quot;no&quot;&gt;
+                &lt;Text&gt;CD &amp;amp;Key:&lt;/Text&gt;
+            &lt;/Control&gt;
+            &lt;Control Id=&quot;CDKeyEdit&quot; Type=&quot;MaskedEdit&quot; X=&quot;45&quot; Y=&quot;159&quot; Width=&quot;250&quot; Height=&quot;16&quot; Property=&quot;PIDKEY&quot; Text=&quot;[PIDTemplate]&quot; /&gt;
+</code></pre>
+
+<p>The dialog will be inserted into the original chain of dialogs. We have to specify which dialogs it will step forward or backward to in this chain: License Agreement and Setup Type. We can learn the actual identifiers of these dialogs if we look into the source file of <em>WixUI_Mondo</em>: <code>src\ext\UIExtension\wixlib\WixUI_Mondo.wxs</code> in the download source package. The names are <em>LicenseAgreementDlg</em> and <em>SetupTypeDlg</em>, so this is how we refer to them from this new dialog:</p>
+<pre><code class="xml">                &lt;Control Id=&quot;Back&quot; Type=&quot;PushButton&quot; X=&quot;180&quot; Y=&quot;243&quot; Width=&quot;56&quot; Height=&quot;17&quot; Text=&quot;&amp;amp;Back&quot;&gt;
+                    &lt;Publish Event=&quot;NewDialog&quot; Value=&quot;LicenseAgreementDlg&quot;&gt;1&lt;/Publish&gt;
+                &lt;/Control&gt;
+                &lt;Control Id=&quot;Next&quot; Type=&quot;PushButton&quot; X=&quot;236&quot; Y=&quot;243&quot; Width=&quot;56&quot; Height=&quot;17&quot; Default=&quot;yes&quot; Text=&quot;&amp;amp;Next&quot;&gt;
+                    &lt;Publish Event=&quot;ValidateProductID&quot; Value=&quot;0&quot;&gt;1&lt;/Publish&gt;
+                    &lt;Publish Event=&quot;SpawnWaitDialog&quot; Value=&quot;WaitForCostingDlg&quot;&gt;CostingComplete = 1&lt;/Publish&gt;
+                    &lt;Publish Event=&quot;NewDialog&quot; Value=&quot;SetupTypeDlg&quot;&gt;ProductID&lt;/Publish&gt;
+                &lt;/Control&gt;
+                &lt;Control Id=&quot;Cancel&quot; Type=&quot;PushButton&quot; X=&quot;304&quot; Y=&quot;243&quot; Width=&quot;56&quot; Height=&quot;17&quot; Cancel=&quot;yes&quot; Text=&quot;Cancel&quot;&gt;
+                    &lt;Publish Event=&quot;SpawnDialog&quot; Value=&quot;CancelDlg&quot;&gt;1&lt;/Publish&gt;
+                &lt;/Control&gt;
+                &lt;Control Id=&quot;BannerBitmap&quot; Type=&quot;Bitmap&quot; X=&quot;0&quot; Y=&quot;0&quot; Width=&quot;370&quot; Height=&quot;44&quot; TabSkip=&quot;no&quot; Text=&quot;WixUI_Bmp_Banner&quot; /&gt;
+                &lt;Control Id=&quot;Description&quot; Type=&quot;Text&quot; X=&quot;25&quot; Y=&quot;23&quot; Width=&quot;280&quot; Height=&quot;15&quot; Transparent=&quot;yes&quot; NoPrefix=&quot;yes&quot;&gt;
+                    &lt;Text&gt;Please enter your customer information&lt;/Text&gt;
+                &lt;/Control&gt;
+                &lt;Control Id=&quot;BottomLine&quot; Type=&quot;Line&quot; X=&quot;0&quot; Y=&quot;234&quot; Width=&quot;370&quot; Height=&quot;0&quot; /&gt;
+                &lt;Control Id=&quot;Title&quot; Type=&quot;Text&quot; X=&quot;15&quot; Y=&quot;6&quot; Width=&quot;200&quot; Height=&quot;15&quot; Transparent=&quot;yes&quot; NoPrefix=&quot;yes&quot;&gt;
+                    &lt;Text&gt;{\WixUI_Font_Title}Customer Information&lt;/Text&gt;
+                &lt;/Control&gt;
+                &lt;Control Id=&quot;BannerLine&quot; Type=&quot;Line&quot; X=&quot;0&quot; Y=&quot;44&quot; Width=&quot;370&quot; Height=&quot;0&quot; /&gt;
+            &lt;/Dialog&gt;
+        &lt;/UI&gt;
+    &lt;/Fragment&gt;
+&lt;/Wix&gt;
+</code></pre>
+
+<p>It is rather easy to incorporate the dialog into the original user interface. Instead of simply referencing <em>WixUI_Mondo</em> as we did earlier, we build our own interface with the <code>UI</code> tag. However, we still want to use the bulk of <em>WixUI_Mondo</em>, so we start by calling it with <code>UIRef</code> and only add our modifications: first, we refer to our new <em>UserRegistrationDlg</em> dialog.</p>
+<p>Then we have to specify the remaining two links. The License Agreement dialog used to point to the Setup Type dialog as its successor and vice versa. Now that our own dialog is inserted between them, we have to modify their <em>Next</em> and <em>Back</em> links correspondingly. The easy way is to copy the relevant <code>Publish</code> tags from <code>WixUI_Mondo.wxs</code> and modify the <code>Value</code> attribute to point to our new dialog, without changing anything else:</p>
+<pre><code class="xml">&lt;UI Id=&quot;MyWixUI_Mondo&quot;&gt;
+  &lt;UIRef Id=&quot;WixUI_Mondo&quot; /&gt;
+  &lt;UIRef Id=&quot;WixUI_ErrorProgressText&quot; /&gt;
+
+  &lt;DialogRef Id=&quot;UserRegistrationDlg&quot; /&gt;
+
+  &lt;Publish Dialog=&quot;LicenseAgreementDlg&quot; Control=&quot;Next&quot; Event=&quot;NewDialog&quot; Value=&quot;UserRegistrationDlg&quot; Order=&quot;3&quot;&gt;LicenseAccepted = &quot;1&quot;&lt;/Publish&gt;
+  &lt;Publish Dialog=&quot;SetupTypeDlg&quot; Control=&quot;Back&quot; Event=&quot;NewDialog&quot; Value=&quot;UserRegistrationDlg&quot;&gt;1&lt;/Publish&gt;
+&lt;/UI&gt;
+</code></pre>
+
+<p>The main file will need to define the property we referred to. MaskedEdit controls use <a href="https://msdn.microsoft.com/en-us/library/aa369797.aspx">various characters</a> to determine what and how will appear in the control, what kind of input the control will accept and how the final data assigned to the receiving property will be formed.</p>
+<pre><code class="xml">&lt;Property Id=&quot;PIDTemplate&quot;&gt;&lt;![CDATA[12345&lt;### ###&gt;@@@@@]]&gt;&lt;/Property&gt;
+</code></pre>
+
+<p>And this is all there is to it. Now we can build our modified installer with the following commands:</p>
+<pre><code class="bash">candle.exe SampleWixUIAddDlg.wxs UserRegistrationDlg.wxs
+light.exe -ext WixUIExtension -out SampleWixUIAddDlg.msi SampleWixUIAddDlg.wixobj UserRegistrationDlg.wixobj
+</code></pre></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../../js/base.js" defer></script>
+        <script src="../../../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -4,14 +4,14 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="None">
         
         
-        <link rel="shortcut icon" href="img/favicon.ico">
-        <title>Talentaylor's Page</title>
-        <link href="css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">
+        
+        <link rel="shortcut icon" href="../../../../img/favicon.ico">
+        <title>What's Not in the Book - Talentaylor's Page</title>
+        <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/color-brewer.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -19,13 +19,13 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <script src="js/jquery-1.10.2.min.js" defer></script>
-        <script src="js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="../../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../../js/bootstrap-3.0.3.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
-    <body class="homepage">
+    <body>
 
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
@@ -39,7 +39,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href=".">Talentaylor's Page</a>
+                    <a class="navbar-brand" href="../../../..">Talentaylor's Page</a>
                 </div>
 
                 <!-- Expanded navigation -->
@@ -51,19 +51,19 @@
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="language_learning/CSharpContent/">C#</a>
+    <a href="../../../CSharpContent/">C#</a>
 </li>
                                     
 <li >
-    <a href="language_learning/PythonContent/">Python</a>
+    <a href="../../../PythonContent/">Python</a>
 </li>
                                     
 <li >
-    <a href="language_learning/OpenGLContent/">OpenGL</a>
+    <a href="../../../OpenGLContent/">OpenGL</a>
 </li>
                                     
 <li >
-    <a href="language_learning/WiXTutorial/WiX_Toolset_Tutorial/">WiXToolset</a>
+    <a href="../../WiX_Toolset_Tutorial/">WiXToolset</a>
 </li>
                                 </ul>
                             </li>
@@ -72,20 +72,20 @@
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="interests/build_blog/">blog</a>
+    <a href="../../../../interests/build_blog/">blog</a>
 </li>
                                     
 <li >
-    <a href="interests/git/git/">git</a>
+    <a href="../../../../interests/git/git/">git</a>
 </li>
                                     
 <li >
-    <a href="interests/markdown/">Markdown</a>
+    <a href="../../../../interests/markdown/">Markdown</a>
 </li>
                                 </ul>
                             </li>
                             <li >
-                                <a href="about_me/">关于我</a>
+                                <a href="../../../../about_me/">关于我</a>
                             </li>
                         </ul>
 
@@ -103,13 +103,57 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#talentaylors-page">Talentaylor's Page</a></li>
+        <li class="main active"><a href="#whats-not-in-the-book">What's Not in the Book</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="talentaylors-page">Talentaylor's Page</h1>
-<p>Welcome to Talentaylor's Page!</p></div>
+<h1 id="whats-not-in-the-book">What's Not in the Book</h1>
+<p>For very specialized actions that the Windows Installer provides no solution for (eg. checking the validity and integrity of the registration key entered by the user), we can use yet another type of custom action: a DLL we write. For our example, we use a simplistic approach: we will accept the user key if its first digit is '1'.</p>
+<p>The following source can be directly compiled with Visual C++ but minimal modifications, if any, will be required to compile it with a different compiler. The <code>msi.h</code> and <code>msiquery.h</code> header files can be acquired from the MSI SDK. You also have to link against <code>msi.lib.</code></p>
+<pre><code class="xml">#include &lt;windows.h&gt;
+#include &lt;msi.h&gt;
+#include &lt;msiquery.h&gt;
+
+#pragma comment(linker, &quot;/EXPORT:CheckPID=_CheckPID@4&quot;)
+
+extern &quot;C&quot; UINT __stdcall CheckPID (MSIHANDLE hInstall) 
+{
+    char Pid[MAX_PATH];
+    DWORD PidLen = MAX_PATH;
+
+    MsiGetProperty(hInstall, &quot;PIDKEY&quot;, Pid, &amp;PidLen);
+    MsiSetProperty(hInstall, &quot;PIDACCEPTED&quot;, Pid[0] == '1' ? &quot;1&quot; : &quot;0&quot;);
+    return ERROR_SUCCESS;
+}
+</code></pre>
+
+<p>To use this DLL, add the following lines to the appropriate places (now, nearing the end of the third lesson, you might be able to do this yourself but if you want to cheat, download <a href="https://www.firegiant.com/system/files/samples/SampleCA.zip">SampleCA.</a></p>
+<pre><code class="xml">&lt;Condition Message='This installation can only run in full UI mode.'&gt;
+    &lt;![CDATA[UILevel = 5]]&gt;
+&lt;/Condition&gt;
+
+&lt;CustomAction Id='CheckingPID' BinaryKey='CheckPID' DllEntry='CheckPID' /&gt;
+&lt;CustomAction Id='RefusePID' Error='Invalid key. Installation aborted.' /&gt;
+
+&lt;InstallExecuteSequence&gt;
+    &lt;Custom Action='CheckingPID' After='CostFinalize' /&gt;
+    &lt;Custom Action='RefusePID' After='CheckingPID'&gt;PIDACCEPTED = &quot;0&quot; AND NOT Installed&lt;/Custom&gt;
+&lt;/InstallExecuteSequence&gt;
+
+&lt;Binary Id='CheckPID' SourceFile='CheckPID.dll' /&gt;
+</code></pre>
+
+<p>To summarize: first, we won't allow the installer to run with reduced or no UI because the user can't enter a registration key in those cases. The reason for the ugly CDATA wrapper is that XML attributes special meaning to some characters, most notably <code>&lt;</code> and <code>&gt;</code>. Wherever they appear in a different context, meaning <em>less-than</em> or <em>greater-than</em>, we have to escape them by wrapping the whole expression into a CDATA. Although this actual case could get away without it because it only checks for equality, it is a good habit to learn to wrap all similar conditional values just in case we need to modify them later, introducing such XML conflicts.</p>
+<p>Then, we have a custom action named <em>CheckingPID</em> running after <em>CostFinalize</em>, when we instruct the installer to start the actual installation after having specified which features we need and where we want to install. This action will call the <em>CheckPID</em> function in our <code>CheckPID.dll</code>, bundled with the installer. The DLL sets the <code>PIDACCEPTED</code> property to either 1 or 0, according to its decision on the validity of the user key entered and stored into the <code>PIDKEY</code> property by the control involved. Note that using properties (with all uppercase names, otherwise Windows Installer will not treat them as public properties) is the only way to pass arguments to and from the custom action.</p>
+<p>We have a second custom action named <em>RefusePID</em>, scheduled to run after the previous action. This is a conditional custom action, only run if the returned <code>PIDACCEPTED</code> property is found to be zero. In this case, the custom action will display an error message and abort the installation. But we will only be interested in this value during the installation, not while we're uninstalling the product.</p>
+<p>To get an understanding of how these actions are called and how they relate to each other, we might run the installer with verbose logging. As it will be verbose, using a text editor and searching for our property and custom action names ("PID" will do just fine) might help locate what's really happening.</p>
+<pre><code class="bash">msiexec /i SampleCA.msi /l*v SampleCA.log
+</code></pre>
+
+<p>If the DLL we need to call has been installed rather than just included in the package, we can use:</p>
+<pre><code class="xml">&lt;CustomAction Id='CheckingPID' FileKey='HelperDLL' DllEntry='CheckPID' /&gt;
+</code></pre></div>
         </div>
 
         <footer class="col-md-12">
@@ -117,11 +161,11 @@
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = ".",
+            var base_url = "../../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="js/base.js" defer></script>
-        <script src="search/main.js" defer></script>
+        <script src="../../../../js/base.js" defer></script>
+        <script src="../../../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
     <div class="modal-dialog">
@@ -189,8 +233,3 @@
 
     </body>
 </html>
-
-<!--
-MkDocs version : 1.0.4
-Build Date UTC : 2020-03-03 08:01:19
--->

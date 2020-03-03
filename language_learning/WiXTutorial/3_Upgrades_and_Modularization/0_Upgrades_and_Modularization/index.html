@@ -4,14 +4,14 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="None">
         
         
-        <link rel="shortcut icon" href="img/favicon.ico">
-        <title>Talentaylor's Page</title>
-        <link href="css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">
+        
+        <link rel="shortcut icon" href="../../../../img/favicon.ico">
+        <title>Upgrades and Modularization - Talentaylor's Page</title>
+        <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/color-brewer.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -19,13 +19,13 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <script src="js/jquery-1.10.2.min.js" defer></script>
-        <script src="js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="../../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../../js/bootstrap-3.0.3.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
-    <body class="homepage">
+    <body>
 
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
@@ -39,7 +39,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href=".">Talentaylor's Page</a>
+                    <a class="navbar-brand" href="../../../..">Talentaylor's Page</a>
                 </div>
 
                 <!-- Expanded navigation -->
@@ -51,19 +51,19 @@
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="language_learning/CSharpContent/">C#</a>
+    <a href="../../../CSharpContent/">C#</a>
 </li>
                                     
 <li >
-    <a href="language_learning/PythonContent/">Python</a>
+    <a href="../../../PythonContent/">Python</a>
 </li>
                                     
 <li >
-    <a href="language_learning/OpenGLContent/">OpenGL</a>
+    <a href="../../../OpenGLContent/">OpenGL</a>
 </li>
                                     
 <li >
-    <a href="language_learning/WiXTutorial/WiX_Toolset_Tutorial/">WiXToolset</a>
+    <a href="../../WiX_Toolset_Tutorial/">WiXToolset</a>
 </li>
                                 </ul>
                             </li>
@@ -72,20 +72,20 @@
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="interests/build_blog/">blog</a>
+    <a href="../../../../interests/build_blog/">blog</a>
 </li>
                                     
 <li >
-    <a href="interests/git/git/">git</a>
+    <a href="../../../../interests/git/git/">git</a>
 </li>
                                     
 <li >
-    <a href="interests/markdown/">Markdown</a>
+    <a href="../../../../interests/markdown/">Markdown</a>
 </li>
                                 </ul>
                             </li>
                             <li >
-                                <a href="about_me/">关于我</a>
+                                <a href="../../../../about_me/">关于我</a>
                             </li>
                         </ul>
 
@@ -103,13 +103,39 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#talentaylors-page">Talentaylor's Page</a></li>
+        <li class="main active"><a href="#upgrades-and-modularization">Upgrades and Modularization</a></li>
+            <li><a href="#pages-in-this-chapter">Pages in this Chapter</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="talentaylors-page">Talentaylor's Page</h1>
-<p>Welcome to Talentaylor's Page!</p></div>
+<h1 id="upgrades-and-modularization">Upgrades and Modularization</h1>
+<p>At the end of the previous lesson, we have already learned how to do everything that can be thought of when it comes to installation packages, right? After all, even if Windows Installer doesn't provide an immediate solution, we just fire up our trusty old compiler and write it for ourselves, right?</p>
+<p>In a way, yes. And in a way, no. We know how to assemble our original installation package but what shall we do when it comes to shipping an upgrade? Or a patch? Shall we ask the user to uninstall the previous version and reinstall the new one? And what happens to the settings our user has made during the use of the software? Shall they start everything from scratch again?</p>
+<p>Of course not. So, let's see how Windows Installer can help solve such problems. It divides product changes into three categories:</p>
+<ul>
+<li><em>Small updates</em> mean small changes to one or a few files where the change doesn't warrant changing the product version (major.minor.build) or product ID GUID.</li>
+</ul>
+<p>Note that you always have to change the Package GUID when you create a new .msi file that is different from the previous ones in any respect. The Installer keeps track of your installed programs and finds them when the user wants to change or remove the installation using these GUIDs. Using the same GUID for different packages will confuse the Installer.</p>
+<ul>
+<li>
+<p><em>Minor upgrades</em> denote changes where the product version will already change. Modify the <code>Version</code> attribute of the <code>Product</code> tag. The product will remain the same, so you don't need to change the <code>Product</code> GUID but, of course, get a new <code>Package</code> GUID.</p>
+</li>
+<li>
+<p><em>Major upgrades</em> denote significant changes like going from one full version to another. Change everything: <code>Version</code> attribute, <code>Product</code> and <code>Package</code> GUIDs.</p>
+</li>
+</ul>
+<p>There are cases when the Windows Installer forces you to use a major upgrade (in other words, to change the <code>Product</code> GUID). You have to when you expect the old and new versions to coexist on the user's computer. You have to when you change the name of the .msi file for any reason. You have to when you need to change any <code>Component</code> GUID in the package. You have to when a component has been removed. You have to when there are any changes in the feature hierarchy (child feature moving out of a parent, or a parent feature getting a new child).</p>
+<p>So, major upgrades are a clear cut but the line between small updates and minor upgrades can be blurred. Think about it this way: if you'll ever need to differentiate between the current and the new versions in your future products, vote for the minor upgrade. In most of the usual cases, however, unless the product is rather large and downloading and deploying it again would be out of question, major upgrades are the safest because they provide the smoothest solution without the risks of the other two variants.</p>
+<p>When you change GUIDs, keep track of the old ones. You will need them to use the sophisticated upgrade features of Windows Installer.</p>
+<h3 id="pages-in-this-chapter">Pages in this Chapter</h3>
+<ul>
+<li><a href="https://www.firegiant.com/wix/tutorial/upgrades-and-modularization/checking-for-oldies/"> Checking for Oldies</a></li>
+<li><a href="https://www.firegiant.com/wix/tutorial/upgrades-and-modularization/replacing-ourselves/"> Replacing Ourselves</a></li>
+<li><a href="https://www.firegiant.com/wix/tutorial/upgrades-and-modularization/patchwork/"> Patchwork</a></li>
+<li><a href="https://www.firegiant.com/wix/tutorial/upgrades-and-modularization/fragments/"> Fragments</a></li>
+<li><a href="https://www.firegiant.com/wix/tutorial/upgrades-and-modularization/mergers/"> Mergers</a></li>
+</ul></div>
         </div>
 
         <footer class="col-md-12">
@@ -117,11 +143,11 @@
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = ".",
+            var base_url = "../../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="js/base.js" defer></script>
-        <script src="search/main.js" defer></script>
+        <script src="../../../../js/base.js" defer></script>
+        <script src="../../../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
     <div class="modal-dialog">
@@ -189,8 +215,3 @@
 
     </body>
 </html>
-
-<!--
-MkDocs version : 1.0.4
-Build Date UTC : 2020-03-03 08:01:19
--->

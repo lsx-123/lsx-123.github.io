@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>git - Talentaylor's Page</title>
+        <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/color-brewer.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../../..">Talentaylor's Page</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">语言 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../../../language_learning/CSharpContent/">C#</a>
+</li>
+                                    
+<li >
+    <a href="../../../language_learning/PythonContent/">Python</a>
+</li>
+                                    
+<li >
+    <a href="../../../language_learning/OpenGLContent/">OpenGL</a>
+</li>
+                                    
+<li >
+    <a href="../../../language_learning/WiXTutorial/WiX_Toolset_Tutorial/">WiXToolset</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">工具 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../../build_blog/">blog</a>
+</li>
+                                    
+<li class="active">
+    <a href="./">git</a>
+</li>
+                                    
+<li >
+    <a href="../../markdown/">Markdown</a>
+</li>
+                                </ul>
+                            </li>
+                            <li >
+                                <a href="../../../about_me/">关于我</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../../build_blog/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../../markdown/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#_1">安装与配置</a></li>
+            <li><a href="#_2">安装</a></li>
+            <li><a href="#_3">用户配置</a></li>
+            <li><a href="#_4">查看配置信息</a></li>
+        <li class="main "><a href="#_5">基本术语</a></li>
+        <li class="main "><a href="#-">本地版本管理 - 基础篇</a></li>
+            <li><a href="#1-git">1. 获取Git仓库</a></li>
+            <li><a href="#2">2. 添加修改（将代码修改从工作区添加到暂存区）</a></li>
+            <li><a href="#3">3. 提交代码（ 将暂存区内容添加到本地仓库）</a></li>
+            <li><a href="#4">4. 查看状态和日志</a></li>
+            <li><a href="#5">5. 删除文件</a></li>
+        <li class="main "><a href="#-_1">本地版本管理 - 高级篇</a></li>
+            <li><a href="#_6">版本回退</a></li>
+            <li><a href="#_7">管理修改</a></li>
+        <li class="main "><a href="#_8">远程版本管理</a></li>
+            <li><a href="#_9">上传本地代码</a></li>
+        <li class="main "><a href="#_10">操作命令</a></li>
+            <li><a href="#git-diff">Git diff</a></li>
+        <li class="main "><a href="#_11">参考文献</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h4 id="_1">安装与配置</h4>
+<h5 id="_2">安装</h5>
+<p>Windows上安装Git，可以通过网页下载并安装<a href="https://git-scm.com/downloads">Git安装程序</a>，按默认选项安装即可。安装成功后，在任意文件夹下右键菜单中可以看到<code>Git Bash Here</code>和<code>Git GUI Here</code>。</p>
+<h5 id="_3">用户配置</h5>
+<p>Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为的配置变量。 这些变量存储在三个不同的位置：</p>
+<ol>
+<li>/etc/gitconfig 文件: 包含系统上每一个用户及他们仓库的通用配置。 如果使用带有 --system 选项的 git config 时，它会从此文件读写配置变量。</li>
+<li>~/.gitconfig 或 ~/.config/git/config 文件：只针对当前用户。 可以传递 --global 选项让 Git 读写此文件。</li>
+<li>当前使用仓库的 Git 目录中的 config 文件（就是 .git/config）：针对该仓库。</li>
+</ol>
+<p>每一个级别覆盖上一级别的配置，所以 .git/config 的配置变量会覆盖 /etc/gitconfig 中的配置变量。</p>
+<p>在 Windows 系统中，Git 会查找 $HOME 目录下（一般情况下是 C:\Users\$USER）的 .gitconfig 文件。 Git 同样也会寻找 /etc/gitconfig 文件，但只限于 MSys 的根目录下，即安装 Git 时所选的目标位置。</p>
+<p>当安装完 Git 应该做的第一件事就是设置你的用户名称与邮件地址。 这样做很重要，因为每一个 Git 的提交都会使用这些信息，并且它会写入到你的每一次提交中，不可更改，打开<code>Git Bash Here</code>进行如下配置：</p>
+<pre><code class="bash">$ git config --global user.name &quot;your name&quot;
+$ git config --global user.email &quot;your email&quot;
+</code></pre>
+
+<p>再次强调，如果使用了 --global 选项，那么该命令只需要运行一次，因为之后无论你在该系统上做任何事情， Git 都会使用那些信息。 当你想针对特定项目使用不同的用户名称与邮件地址时，可以在那个项目目录下运行没有 --global 选项的命令来配置。</p>
+<h5 id="_4">查看配置信息</h5>
+<p>如果想要检查你的配置，可以使用 <code>git config --list</code> 命令来列出所有 Git 当时能找到的配置。</p>
+<pre><code class="bash">$ git config --list
+</code></pre>
+
+<p>你可以通过输入 <code>git config &lt;key&gt;</code>： 来检查 Git 的某一项配置</p>
+<pre><code class="bash">$ git config user.name
+</code></pre>
+
+<h4 id="_5">基本术语</h4>
+<p><img alt="schema" src="../img/schema.jpg" /></p>
+<p><img alt="cmd_schema" src="../img/cmd_schema.png" /></p>
+<ul>
+<li><strong>Workspace</strong>：工作区，代码库的所有文件但不包括版本库(<code>.git</code>文件夹内所有文件)</li>
+<li><strong>Index/Stage</strong>：暂存区，也叫索引，用于进行提交前的缓存区域，添加的修改,都是进入到暂存区了，肉眼不可见 通过 <code>git status</code> 可以看到修改的状态。</li>
+<li><strong>Repository</strong>：仓库区（或本地仓库），也存储库，提交的目标库</li>
+<li><strong>Remote</strong>：远程仓库</li>
+</ul>
+<h4 id="-">本地版本管理 - 基础篇</h4>
+<h5 id="1-git">1. 获取Git仓库</h5>
+<h6 id="11">1.1 在现有目录中初始化仓库</h6>
+<pre><code class="bash">$ mkdir git_test
+$ cd git_test
+$ pwd
+
+$ git init # 将当前文件夹设为仓库
+$ Initialized empty Git repository in /Users/my-pc/testcms/.git/
+
+$ git init project-dir # 在当前目录中创建project-dir仓库
+</code></pre>
+
+<p>瞬间Git就把仓库建好了，而且告诉你是一个空的仓库（empty Git repository），细心的开发者可以发现当前目录下多了一个.git的目录，这个目录是Git来跟踪管理版本库的，没事千万不要手动修改这个目录里面的文件，不然改乱了，就把Git仓库给破坏了。</p>
+<h6 id="12">1.2 克隆已有仓库</h6>
+<ul>
+<li>克隆本地仓库</li>
+</ul>
+<pre><code class="bash">$ git clone /d/Work/MakeSmartLabInstaller /f/make_installer
+</code></pre>
+
+<ul>
+<li>获取指定历史版本源代码</li>
+</ul>
+<pre><code class="bash">$ git clone /d/Work/MakeSmartLabInstaller /f/make_installer
+$ git checkout fd9269a
+</code></pre>
+
+<ul>
+<li>克隆远程仓库</li>
+</ul>
+<pre><code class="bash">$ git clone http://xxx.xxx
+</code></pre>
+
+<h5 id="2">2. 添加修改（将代码修改从工作区添加到暂存区）</h5>
+<ul>
+<li>常用命令</li>
+</ul>
+<pre><code class="bash">$ git add -A  # 提交所有变化，也可使用--all
+$ git add -u  # 提交被修改(modified)和被删除(deleted)文件，不包括新文件(new)
+$ git add .   # 提交新文件(new)和被修改(modified)文件，不包括被删除(deleted)文件
+$ git add dir # 提交文件夹
+</code></pre>
+
+<ul>
+<li>添加<code>.gitignore</code>忽略某些文件避免提交</li>
+</ul>
+<pre><code class="bash">#ignore these files
+/src/test/
+.Test/
+temp.txt
+*.xml
+</code></pre>
+
+<h5 id="3">3. 提交代码（ 将暂存区内容添加到本地仓库）</h5>
+<pre><code class="bash">git commit -m &quot;自己写注释以备后期查看提交内容&quot;
+</code></pre>
+
+<h5 id="4">4. 查看状态和日志</h5>
+<pre><code class="bash">git status
+git log
+</code></pre>
+
+<h5 id="5">5. 删除文件</h5>
+<pre><code class="bash">git rm &lt;files&gt;
+git add -A
+git commit -m 'remove &lt;files&gt;'
+</code></pre>
+
+<h4 id="-_1">本地版本管理 - 高级篇</h4>
+<h5 id="_6">版本回退</h5>
+<p>当前版本HEAD，上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100。</p>
+<pre><code class="bash">$ git log
+$ git log --pretty=oneline
+$ git reset --hard HEAD^
+# 回退到新版本
+$ git reflog
+$ git reset --hard commit-id
+</code></pre>
+
+<h5 id="_7">管理修改</h5>
+<h4 id="_8">远程版本管理</h4>
+<h5 id="_9">上传本地代码</h5>
+<h6 id="1-github">1. 创建Github仓库（远程仓库）</h6>
+<p>登陆<code>Github</code>创建一个新的仓库<code>Create a new repository</code>，</p>
+<h6 id="2-git">2. 获取git地址</h6>
+<pre><code class="bash">https://GitHub.com/xxx/xxx.git
+# 或者
+git@github.com:xxx/xxx.git
+</code></pre>
+
+<h6 id="3_1">3. 关联远程库</h6>
+<ul>
+<li>克隆<code>Github</code>仓库</li>
+</ul>
+<pre><code class="bash">$ git clone https://GitHub.com/xxx/xxx.git
+# 或者
+$ git clone origin git@github.com:lsx-123/xxx.git # 速度快一些
+</code></pre>
+
+<ul>
+<li>关联本地已存在库</li>
+</ul>
+<pre><code class="bash">git remote add origin git@github.com:lsx-123/xxx.git
+</code></pre>
+
+<h6 id="4_1">4. 创建本地代码（如有代码直接拷贝至本地文件夹内）</h6>
+<h6 id="5_1">5. 上传本地代码</h6>
+<pre><code class="bash">$ git add .
+$ git commit -m &quot;首次上传xxx代码&quot;
+$ git push -u origin master # 第一次使用 -u，后面就可以不使用该参数了
+</code></pre>
+
+<h6 id="6">6. 下载远程代码</h6>
+<pre><code class="bash">$ git pull
+</code></pre>
+
+<h4 id="_10">操作命令</h4>
+<h5 id="git-diff">Git diff</h5>
+<p>用于比较两次修改的差异</p>
+<ul>
+<li>比较工作区与暂存区</li>
+</ul>
+<pre><code class="bash">$ git diff 不加参数即默认比较工作区与暂存区
+</code></pre>
+
+<ul>
+<li>比较暂存区与最新本地版本库（本地库中最近一次<code>commit</code>的内容）</li>
+</ul>
+<pre><code class="bash">$ git diff --cached  [&lt;path&gt;...] 
+</code></pre>
+
+<ul>
+<li>比较工作区与最新本地版本库</li>
+</ul>
+<pre><code class="bash">$ git diff HEAD [&lt;path&gt;...] # 如果HEAD指向的是master分支，那么HEAD还可以换成master
+</code></pre>
+
+<ul>
+<li>比较工作区与指定<code>commit-id</code>的差异</li>
+</ul>
+<pre><code class="bash">$ git diff commit-id  [&lt;path&gt;...] 
+</code></pre>
+
+<ul>
+<li>比较暂存区与指定<code>commit-id</code>的差异</li>
+</ul>
+<pre><code class="bash">$ git diff --cached [&lt;commit-id&gt;] [&lt;path&gt;...] 
+</code></pre>
+
+<ul>
+<li>比较两个<code>commit-id</code>之间的差异</li>
+</ul>
+<pre><code class="bash">$ git diff [&lt;commit-id&gt;] [&lt;commit-id&gt;]
+</code></pre>
+
+<ul>
+<li>使用<code>git dif</code>f打补丁</li>
+</ul>
+<pre><code class="bash">$ git diff &gt; patch #patch的命名是随意的，不加其他参数时作用是当我们希望将我们本仓库
+</code></pre>
+
+<p>工作区的修改拷贝一份到其他机器上使用，但是修改的文件比较多，拷贝量比较大，此时我们可以将修改的代码做成补丁，之后在其他机器上对应目录下使用 git apply patch 将补丁打上即可</p>
+<pre><code class="bash">$ git diff --cached &gt; patch # 是将我们暂存区与版本库的差异做成补丁
+$ git diff --HEAD &gt; patch # 是将工作区与版本库的差异做成补丁
+$ git diff Testfile &gt; patch # 将单个文件做成一个单独的补丁
+</code></pre>
+
+<p>拓展：<code>git apply patch</code> 应用补丁，应用补丁之前我们可以先检验一下补丁能否应用，<code>git apply --check patch</code>如果没有任何输出，那么表示可以顺利接受这个补丁。另外可以使用<code>git apply --reject patch</code>将能打的补丁先打上，有冲突的会生成<code>.rej</code>文件，此时可以找到这些文件进行手动打补丁　</p>
+<h4 id="_11">参考文献</h4>
+<ol>
+<li>廖雪峰， <a href="https://www.liaoxuefeng.com/wiki/896043488029600">Git教程</a></li>
+<li>[Git官网教程]https://hexo.io/docs/deployment.html)</li>
+</ol></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

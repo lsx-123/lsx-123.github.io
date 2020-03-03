@@ -4,14 +4,14 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="None">
         
         
-        <link rel="shortcut icon" href="img/favicon.ico">
-        <title>Talentaylor's Page</title>
-        <link href="css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">
+        
+        <link rel="shortcut icon" href="../../../../img/favicon.ico">
+        <title>Custom Settings - Talentaylor's Page</title>
+        <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/color-brewer.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -19,13 +19,13 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <script src="js/jquery-1.10.2.min.js" defer></script>
-        <script src="js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="../../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../../js/bootstrap-3.0.3.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
-    <body class="homepage">
+    <body>
 
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
@@ -39,7 +39,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href=".">Talentaylor's Page</a>
+                    <a class="navbar-brand" href="../../../..">Talentaylor's Page</a>
                 </div>
 
                 <!-- Expanded navigation -->
@@ -51,19 +51,19 @@
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="language_learning/CSharpContent/">C#</a>
+    <a href="../../../CSharpContent/">C#</a>
 </li>
                                     
 <li >
-    <a href="language_learning/PythonContent/">Python</a>
+    <a href="../../../PythonContent/">Python</a>
 </li>
                                     
 <li >
-    <a href="language_learning/OpenGLContent/">OpenGL</a>
+    <a href="../../../OpenGLContent/">OpenGL</a>
 </li>
                                     
 <li >
-    <a href="language_learning/WiXTutorial/WiX_Toolset_Tutorial/">WiXToolset</a>
+    <a href="../../WiX_Toolset_Tutorial/">WiXToolset</a>
 </li>
                                 </ul>
                             </li>
@@ -72,20 +72,20 @@
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="interests/build_blog/">blog</a>
+    <a href="../../../../interests/build_blog/">blog</a>
 </li>
                                     
 <li >
-    <a href="interests/git/git/">git</a>
+    <a href="../../../../interests/git/git/">git</a>
 </li>
                                     
 <li >
-    <a href="interests/markdown/">Markdown</a>
+    <a href="../../../../interests/markdown/">Markdown</a>
 </li>
                                 </ul>
                             </li>
                             <li >
-                                <a href="about_me/">关于我</a>
+                                <a href="../../../../about_me/">关于我</a>
                             </li>
                         </ul>
 
@@ -103,13 +103,33 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#talentaylors-page">Talentaylor's Page</a></li>
+        <li class="main active"><a href="#custom-settings">Custom Settings</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="talentaylors-page">Talentaylor's Page</h1>
-<p>Welcome to Talentaylor's Page!</p></div>
+<h1 id="custom-settings">Custom Settings</h1>
+<p>In this treeview, each entry will have an associated context menu, allowing the user to decide which features should be installed and how. The menu defaults to the following entries:</p>
+<ul>
+<li>This feature will be installed on local hard drive.</li>
+<li>This feature, and all subfeatures, will be installed on local hard drive.</li>
+<li>This feature will be installed to run from network.*</li>
+<li>This feature, and all subfeatures, will be installed to run from network.*</li>
+<li>This feature will be installed when required.</li>
+<li>This feature will not be available.</li>
+</ul>
+<p>* There seems to be a bug in Windows Installer. With features having no files inside, this entry will appear in the context menu even if you use the attributes outlined above to remove it. In this case, add an empty component (with no files inside) to the feature.</p>
+<p>Using various attributes of <code>Feature</code>, some of these items can be removed or modified, leaving only those that make sense for the feature in question. Basically, there are five possibilities: to install the feature on the local hard drive, to let it run from the installation media, to run it from the network, to install on demand (the feature will be installed when the user tries to activate it for the first time; this is only supported on more recent operating systems) and to not install it at all.</p>
+<ul>
+<li><strong>AllowAdvertise='no'</strong>: <code>This feature will be installed when required</code> will be removed from the context menu. The user is not allowed to install this feature on demand.</li>
+<li><strong>AllowAdvertise='yes'</strong>: <code>This feature will be installed when required</code> will appear in the context menu. The user is allowed to install this feature on demand.</li>
+<li><strong>AllowAdvertise='system'</strong>: <code>This feature will be installed when required</code> will only appear in the context menu, allowing the user to install the feature on demand, if the operating system supports this.</li>
+<li><strong>InstallDefault='local'</strong>: <code>This feature, [and all subfeatures,] will be installed on local hard drive</code> will appear in the context menu.</li>
+<li><strong>InstallDefault='source'</strong>: <code>This feature, [and all subfeatures,] will be installed to run from CD</code> will appear in the context menu instead of the original entry <code>...installed on local hard drive</code>.</li>
+<li><strong>InstallDefault='followParent'</strong>: The actual state (either <em>local</em> or <em>source</em>) will follow the one set in the parent feature.</li>
+<li><strong>Absent='allow'</strong>: <code>This feature will not be available</code> will appear in the context menu. The user can decide whether to install this feature or not.</li>
+<li><strong>Absent='disallow'</strong>: <code>This feature will not be available</code> will be removed from the context menu. The feature is always required, the user is not allowed to turn its installation off.</li>
+</ul></div>
         </div>
 
         <footer class="col-md-12">
@@ -117,11 +137,11 @@
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = ".",
+            var base_url = "../../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="js/base.js" defer></script>
-        <script src="search/main.js" defer></script>
+        <script src="../../../../js/base.js" defer></script>
+        <script src="../../../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
     <div class="modal-dialog">
@@ -189,8 +209,3 @@
 
     </body>
 </html>
-
-<!--
-MkDocs version : 1.0.4
-Build Date UTC : 2020-03-03 08:01:19
--->

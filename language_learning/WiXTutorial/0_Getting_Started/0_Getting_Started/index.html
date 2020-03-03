@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../../img/favicon.ico">
+        <title>Getting Started - Talentaylor's Page</title>
+        <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/color-brewer.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../../../..">Talentaylor's Page</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">语言 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../../../CSharpContent/">C#</a>
+</li>
+                                    
+<li >
+    <a href="../../../PythonContent/">Python</a>
+</li>
+                                    
+<li >
+    <a href="../../../OpenGLContent/">OpenGL</a>
+</li>
+                                    
+<li >
+    <a href="../../WiX_Toolset_Tutorial/">WiXToolset</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">工具 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../../../../interests/build_blog/">blog</a>
+</li>
+                                    
+<li >
+    <a href="../../../../interests/git/git/">git</a>
+</li>
+                                    
+<li >
+    <a href="../../../../interests/markdown/">Markdown</a>
+</li>
+                                </ul>
+                            </li>
+                            <li >
+                                <a href="../../../../about_me/">关于我</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#getting-started">Getting Started</a></li>
+            <li><a href="#pages-in-this-chapter">Pages in this Chapter</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="getting-started">Getting Started</h1>
+<p>As we have already mentioned in the introduction, the WiX toolset uses XML source files describing the components that make up the installation process of our application  additional data about shortcuts, registry or .ini file changes, services and similar. In addition to the files you want to copy to the disk of the user, the installation package can also carry helper files that take part in the installation but will not be actually installed (these can include dialogs, icons and bitmaps for the installation UI, license or readme files, or custom DLLs to carry out any programmatic task the Windows Installer doesn't support, including any kind of user registration or key checking logic you might want to implement).</p>
+<p><font face="华文中宋" color=blue>
+在前面的引言中，我们提到 WiX 使用 XML 格式的源码文件描述组件、服务等，这些组件组成了应用程序的安装过程，他们描述了应用程序附属数据——快捷键、注册表、.ini文件的变化。除了拷贝到用户磁盘上的文件外，安装包也可以携带一类特殊的帮助文档，即参与安装过程但不会被安装在用户磁盘上（这些帮助文档包含对话框、规定UI的图标与贴图、许可文件或自述文件、自定义Windows Installer不支持的执行编程式任务的DLL，还包括任意类型用户注册，或者你想执行的关键检擦逻辑）。
+</font></p>
+<p>All these will be described in the source files fed to the WiX compiler. The toolset consists of several parts and we will use two of them to compile our installation packages. Assuming we have prepared a <code>Sample.wxs</code> file, the command</p>
+<p><font face="华文中宋" color=blue>
+所有这些保存在 XML 源文件中的描述关键字都会被投递给 WiX 编译器。工具集包含了好几个工具，我们将使用其中两个来编译安装程序。假设我们已经准备了一个安装源码文件 <code>Sample.wxs</code>，命令
+</font></p>
+<pre><code class="bash">candle.exe Sample.wxs
+</code></pre>
+
+<p>will perform the first phase of the compilation, creating <code>Sample.wixobj</code>, a half-digested file (this one is still XML but its internal structure is irrelevant to us; think about it as an object file in usual compiler parlance). The second command</p>
+<p><font face="华文中宋" color=blue>
+将执行执行编译的第一阶段，创建出<code>Sample.wixobj</code>，一个半消化性质的中间文件（这仍然是 XML格式的，但其内部结构已经与我们无关了，可以把它看作是常见编译过程的中间目标文件）。第二个命令
+</font></p>
+<pre><code class="bash">light.exe Sample.wixobj
+</code></pre>
+
+<p>will turn this intermediate representation into our final package, a <code>Sample.msi</code> file. Much like a compiler and a linker. Actually, even more: the linker, unless we specifically tell it not to do so, also runs a verification step that checks the finished installer database for hundreds of possible issues and problems.</p>
+<p><font face="华文中宋" color=blue>
+将这个中间文档转换成最终安装包，<code>Sample.msi</code>。这两个工具非常像编译器和链接器。实际上， 除非明确告诉链接器不要这样做，否则会运行验证步骤，检验安装包数据库数以百计的问题。</font></p>
+<p>As is usual with compilers today, you are not limited to the command line any more. Integrated development environments like Microsoft Visual Studio or SharpDevelop also have support for WiX projects: either coming bundled with the IDE itself or as an addin. In the case of Visual Studio, the WiX package installs the VS support automatically. Using this approach, you can create a separate setup solution or even include the setup as a part project of a complete solution. In this case, you don't even have to leave your programming environment in order to build the final setup package.</p>
+<p><font face="华文中宋" color=blue>与今天的编译器一样，WiX 并不限制于命令行方式。WiX 也支持集成开发环境，如 Microsoft Visual Studio、SharpDevelop，要么直接绑定在IDE中，要么作为其中的一个插件。在 Visual Studio中，WiX 的安装包会自动安装 VS 相关支持。使用这种方法，你可以创建一个分离的解决方案，甚至将安装项目作为一个完整解决方案的一部分。这种情况下，甚至不需要离开编程环境去构建最终的安装包。</font></p>
+<p>But, although the analogy of a compiler and linker is very straightforward and might help us understand how WiX actually builds installation packages, you shouldn't consider the WiX source we will start to write in a minute anything like a script or programming language. We won't collect steps or operations required to install our application. The .msi file we want to distribute our application with is not a setup application but an installation database. The programming logic, the knowledge about how to install an application, how to modify registry keys, how to create shortcuts, users and network shares, how to manipulate web directories or services resides in Windows Installer. Our setup file only describes <em>what</em> we expect Windows Installer to do and provides the files to be deployed (as well as interface elements used in the process).</p>
+<p><font face="华文中宋" color=blue>虽然编译器和链接器的类比非常直观，有助于理解 WiX 如何构建安装包，但是人们不要考虑在数分钟内写的正如脚本或编程语言一样的 WiX 源码。我们不需要收集细致的安装执行步骤或者操作要求。我们想要发布应用程序的 .msi 文件不是具体执行的安装程序而是安装数据库。有关如何安装、如何修改注册表、如何创建快捷键、用户、网络共享
+如何操作网络文件夹或服务的编程逻辑和知识都已经包含在 Windows Installer内。WiX 安装源码文件只描述我们期望 Windows Installer 做什么事情，并提供需要部署的文件（正如在过程中使用的接口元素一样）就好。</font></p>
+<p>This database approach means that our WiX source files are not built like regular programs. There is no notion of sequential execution in WiX, the first source line is not supposed to be executed prior to the second one. There will be no declarations that need to precede the references. Various elements might be described in different places and, wherever a link is required between them, one will refer to the other using unique identifiers we need to provide. If you need to think in terms of programming languages, consider WiX as a functional, descriptive language rather than an imperative, prescriptive one.</p>
+<p><font face="华文中宋" color=blue>这种数据库方法意味着，WiX 源文件并不像常规程序代码那样进行构建。在 WiX 中没有按顺序执行的概念，第一行 WiX 代码并不意味要早于第二行而被优先执行。也没有先声明后引用的要求。WiX的各种元素会在不同的地方进行描述，分布于其中的链接在无论在哪里被请求，只要使用我们提供的唯一标识符即可。</font></p>
+<p>Also note that WiX is not an installation environment of its own. To put it simply, it is a comfortable, XML-style way to describe your installation requirements that gets translated into Windows Installer .msi databases by its compiler and linker. In this respect, WiX is a relatively thin wrapper around Windows Installer technology, and while it does provide extra features to help the setup developers, its abilities are dictated by the underlying technology and its limitations are not of its own but the limitations of Windows Installer itself.</p>
+<p><font face="华文中宋" color=blue>同时也要注意的是 WiX 并不是自己的安装环境。为了简单，WiX 描述安装需求，通过编译和链接器转换成 Windows Installer .msi 数据库，采用丰富的、XML格式的方式。就这方面而言，WiX 是一个相对轻量的壳包裹着Windows Installer技术，同时也提供了一些帮助安装包开发人员的额外特征，它的功能由潜在的技术决定的，它的限制不是自身决定的而是 Windows Installer 技术决定的。</font></p>
+<h3 id="pages-in-this-chapter">Pages in this Chapter</h3>
+<ul>
+<li><a href="https://www.firegiant.com/wix/tutorial/getting-started/the-software-package/"> The Software Package</a></li>
+<li><a href="https://www.firegiant.com/wix/tutorial/getting-started/the-files-inside/"> The Files Inside</a></li>
+<li><a href="https://www.firegiant.com/wix/tutorial/getting-started/putting-it-to-use/"> Putting it to Use</a></li>
+<li><a href="https://www.firegiant.com/wix/tutorial/getting-started/useful-extras/"> Useful Extras</a></li>
+<li><a href="https://www.firegiant.com/wix/tutorial/getting-started/where-to-install/"> Where to Install?</a></li>
+<li><a href="https://www.firegiant.com/wix/tutorial/getting-started/conditional-installation/"> Conditional Installation</a></li>
+<li><a href="https://www.firegiant.com/wix/tutorial/getting-started/beyond-files/"> Beyond Files</a></li>
+<li><a href="https://www.firegiant.com/wix/tutorial/getting-started/orphaned-on-removal/"> Orphaned on Removal</a></li>
+</ul></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../../js/base.js" defer></script>
+        <script src="../../../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

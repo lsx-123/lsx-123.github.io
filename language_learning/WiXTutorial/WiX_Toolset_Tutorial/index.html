@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>WiXToolset - Talentaylor's Page</title>
+        <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/color-brewer.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../../..">Talentaylor's Page</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">语言 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../../CSharpContent/">C#</a>
+</li>
+                                    
+<li >
+    <a href="../../PythonContent/">Python</a>
+</li>
+                                    
+<li >
+    <a href="../../OpenGLContent/">OpenGL</a>
+</li>
+                                    
+<li class="active">
+    <a href="./">WiXToolset</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">工具 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../../../interests/build_blog/">blog</a>
+</li>
+                                    
+<li >
+    <a href="../../../interests/git/git/">git</a>
+</li>
+                                    
+<li >
+    <a href="../../../interests/markdown/">Markdown</a>
+</li>
+                                </ul>
+                            </li>
+                            <li >
+                                <a href="../../../about_me/">关于我</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../../OpenGLContent/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../../../interests/build_blog/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#wix-toolset-tutorial">WiX Toolset Tutorial</a></li>
+            <li><a href="#introduction">Introduction</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="wix-toolset-tutorial">WiX Toolset Tutorial</h1>
+<p>The <a href="http://wixtoolset.org/">WiX Toolset</a> is a set of tools that build Windows installation packages from XML source code. The toolset provides both a command line environment that developers may either integrate into their old style Makefile build processes or use the newer MSBuild technology from inside integrated development environments like Microsoft Visual Studio or SharpDevelop to build their MSI and MSM setup packages.</p>
+<p><font face="华文中宋" color=blue>
+<a href="http://wixtoolset.org/">WiX</a>是利用XML格式源码来构建Winxdows环境下的安装程序包的一套工具集合。它提供了命令行和IDE整合两种构建环境。开发者可以将其整合到比较老的<code>Makefile</code>构建过程，或者包含MSBuild技术的IDE（比如，Visual Studio、SharpDevelop）中来构建他们自己的MSI和MSM安装包。
+</font></p>
+<p>WiX is an open source project, originally developed by Microsoft and maintained by Rob Mensching. You can <a href="http://wixtoolset.org/releases/">download the latest binary and source code releases</a>. This tutorial covers the stable version 3.x.</p>
+<p><font face="华文中宋" color=blue>
+WiX是一个开源项目，微软完成最初开发，由 Rob Mensching 进行维护。你可以下载最新的二进制或者源码<a href="http://wixtoolset.org/releases/">发布版本</a>。本教程设计内容支持稳定的3.0以后的版本。
+</font></p>
+<p>The toolset is written in C# and requires the .NET Framework to run. However, this only applies to the toolset itself. The installation packages you create with the toolset do not require any extra framework or software to be installed on the target computer. Similarly, there might be a few additional utilities required for some special applications (merge modules, patches) but only on your build computer, the client will only need the finished and self-contained installer package, nothing else.</p>
+<p><font face="华文中宋" color=blue>
+WiX 工具集由C#语言开发并需要.NET Framework环境才能运行，但这仅仅针对 WiX 工具集本身。在目标客户的主机上运行用WiX创建的安装包并不需要安装其他额外的框架或者软件。同样地，在安装包构建主机上也可能需要安装一些特殊的工具包，但是客户机器上只需要你制作好的独立的安装包即可，不需要其他任何东西。
+</font></p>
+<p>There is a friendly community of WiX developers and users in <a href="http://wixtoolset.org/documentation/mailinglist/">dedicated mailing lists</a>. This is the best place to ask for advice about any aspect of WiX. As is usual with such mailing lists today, you have to subscribe first before you can ask any question; without that, the list users couldn't cope with spam...</p>
+<p><font face="华文中宋" color=blue>
+WiX拥有与一个友好的开发者和用户社区，详见<a href="http://wixtoolset.org/documentation/mailinglist/">邮件列表</a>。这里是寻求WiX任意方面问题建议的最好地方。提问前请先订阅邮件列表，否则会被作为垃圾邮件。
+</font></p>
+<h2 id="introduction">Introduction</h2>
+<p>Finishing the development of an application is still far from ending it. During the recent years, users have learned to expect a full-fledged, complete setup solution bundled with your product---and as the setup is the very first part of the application the end user becomes acquainted with, the importance of its integrity and reliability cannot be overestimated.</p>
+<p><font face="华文中宋" color=blue>
+应用程序开发的完成距离整个应用程序项目开发的完成还相差甚远。近年来，终端用户希望您的产品有一个完整的部署解决方案，毕竟安装部署是终端用户了解您的应用程序的第一步，其完整和可靠的重要性怎么估计都不过分。
+</font></p>
+<p>Traditional setup tools used a programmatic, script-based approach to describe the various steps involved in the deployment of the application to be installed on the target machine: files to be copied, registry settings to be created, device drivers and services to be started. The technology behind Windows Installer, while it maintains a comparable look and feel for the end user, underwent important philosophical changes. The fundamental change was to move from the imperative description to a declarative one: rather than to describe the individual steps of installation, the declarative form specifies the state the target machine should be left in after various phases of installation and uninstallation. While the imperative description seems to be quite sufficient until some error occurs, the declarative one makes it possible to cope with unexpected conditions, differing target machine environments, aborted installations, shared resources. It is of paramount importance for setup developers to make sure that whatever happens during the process, the target machine should be left in a known, stable state, without introducing any detrimental side effects.</p>
+<p><font face="华文中宋" color=blue>
+传统安装工具使用编程式的、基于脚本的方法去描述安装步骤，这涉及从程序的开发到安装在目标机器上：拷贝文件、注册表创建、设备驱动和服务的开启。Windows Installer 技术背后经历了重要的哲学变化，虽然终端用户的观感未发生明显变化。最基本的变化就是安装部署从编程性描述转变为声明性描述：不再是详细描述安装流程中的每一小步，声明性描述规定了目标机器在各种安装或者卸载阶段中必须处于的状态。一旦出现异常，编程性描述就没有看起来的那样稳健了，而声明性描述则可以处理异常情况（如，目标机器环境差异，中止安装、共享资源等）。在安装过程中无论发生什么情况，保证目标计算机处于可知的稳定状态而未引入任何有害副作用，对于安装包开发者来说都是最重要的。
+</font></p>
+<p>The developers of the widely used setup tools also embraced the new technology and started to offer new versions of their tools to create setup programs of this nature. However, as the experience of many developers shows, while these tools are perfectly capable of creating simpler installation packages, they often prove too limiting, inflexible when it comes to more complex requirements.</p>
+<p><font face="华文中宋" color=blue>
+流行的安装包制作工具的开发者们当然也会拥抱这一新技术，并提供他们的新版本安装工具来创建这种类型的安装程序。虽然这些工具可以完美的创建简单类型的安装包，但是从许多开发者实际的经验来看，他们经常在面临更加复杂的安装部署需求时过于受限制而显得不灵活。
+</font></p>
+<p>The toolset we are about to introduce, WiX, uses a different approach. Instead of a tool with a graphical interface that allows the developers to collect the files and other related tasks making up the installation process manually, it is much more like a programming language. Integrating perfectly with the usual process of creating applications, it uses a text file (based on the XML format) to describe all the elements of the installation process. The toolset has a compiler and a linker that will create the setup program just like our usual compiler creates our application from the source files. Therefore, WiX can be made part of any automated application build process very easily, be that based either on the classical technology of makefiles or the similar features of contemporary integrated development environments.</p>
+<p><font face="华文中宋" color=blue>
+这里我们将隆重介绍的安装工具——WiX，使用一种不同的方式。它并不是直接允许开发者通过图形界面手动地选择文件和其他相关任务来搭建安装过程，而更像是一种编程语言。它可以完美地整合在应用程序开发的过程中，使用基于XML格式的文本文件来描述所有的安装过程。工具集有一个编译器和链接器来创建安装程序，就像常见编译器从源码文件编译得到应用程序一样。因此，WiX 可以非常简单的来搭建并实现自动化应用程序构建过程，这可以通过makefile传统技术，或者类似于现代IDE的方式来实现</font></p>
+<p>In addition to this integration, providing basically nothing more but developer comfort, WiX offers another level of integration, far more advantageous than the first one: the integration of the setup development process with that of the application. Traditionally, setup programs were only written when the main application had already been finished; often even by different developers. This approach requires a tedious and error prone process of collecting information about all the resources making up the application. While the files themselves are usually obvious, registry entries, services and most forms of inter-resource dependencies are often hard to reconstruct in a later stage: if solid development documentation is lacking, the setup developers have to collect all pieces of information from the original developers or try to extract it from the source code.</p>
+<p><font face="华文中宋" color=blue>除了底层上没有什么新的东西仅仅给开发人员提供便利的整合，WiX 还提供了优势远超前一种整合的另外一个层次的整合：安装包的开发过程与应用程序的开发过程整合在一起。传统上，安装包程序的编写只发生在主应用程序开发已经完成阶段，而且常常是其他人而非应用开发人员来写。这种方法需要一个冗长易错的收集组成应用程序的资源信息的过程。虽然这些文件一般比较显眼，但是，注册表、服务和大部分内部资源依赖的窗体，是很难在之后的阶段进行重新构建的。如果缺乏强类型的开发文档，安装开发工程师不得不从应用程序开发工程师那里收集所有的信息碎片，或者从源码中抽取这些信息。</font></p>
+<p>In an integrated application/setup development environment, the original developer should modify the WiX source files in sync with the application development. As soon as a new module has been started, a new registry entry, service or other dependency has been coded, the appropriate setup modification should be made in parallel. Using this approach, no important information will ever be lost and, as a bonus, the setup program will be practically finished together with the application itself.</p>
+<p><font face="华文中宋" color=blue>在一个应用程序/安装包程序的集成开发环境中，应用程序开发工程师可以在开发应用程序的同时，同步修改 WiX 安装源码文件。只要开始一个新模块的开发，新注册表、服务或者其他依赖都要被设置，适当的安装程序调整也应该同步进行。利用这种方式，重要信息再也不会遗失，同时，安装包程序也可以和应用程序同步完成。</font></p>
+<p>As a consequence, WiX is not equally suited to all developers. The relatively steep learning curve (although our primary goal is to help overcome this difficulty with our tutorial) and the unavoidable exposure to the internal details and, sometimes, intricacies of the underlying Windows Installer technology suggest that less experienced developers or those who don't really need the unlimited and unparalleled performance WiX can offer might be better served by a simpler, GUI-based setup authoring tool, of which there are both commercial and freeware solutions available.</p>
+<p><font face="华文中宋" color=blue>因此，WiX 不一定会适应于所有的开发者。由于 WiX 相对陡峭的学习曲线（虽然我们的最初目标是通过本篇教程帮助大家克服这个困难），不可避免地爆露于内部细节，和错综复杂的潜在 Windows Installer 技术，对于那些经验不足的开发者或者那些不真正需要无限和并行执行方案，使用一个简单的基于GUI的安装授权工具可能会更好，这种简单类型的安装开发工具既有商业的和免费的开源解决方案可供使用。</font></p>
+<p>To summarize the features and advantages of the toolset:</p>
+<ul>
+<li>declarative approach</li>
+<li>unrestricted access to Windows Installer functionality</li>
+<li>source code instead of GUI-based assembly of information</li>
+<li>complete integration into application build processes</li>
+<li>possible integration with application development</li>
+<li>support for team development, both in-house and third-party</li>
+<li>free, open source</li>
+</ul>
+<p><font face="华文中宋" color=blue>总结一下 WiX 的特点以及其具备的优势：</font></p>
+<ul>
+<li><font face="华文中宋" color=blue>声明式方法</font></li>
+<li><font face="华文中宋" color=blue>无限制的使用 Windows Installer 技术</font></li>
+<li><font face="华文中宋" color=blue>源码而非基于GUI的信息装配</font></li>
+<li><font face="华文中宋" color=blue>完整集成于应用程序构建过程</font></li>
+<li><font face="华文中宋" color=blue>可集成于应用程序开发过程</font></li>
+<li><font face="华文中宋" color=blue>支持团队开发，内部或者第三方</font></li>
+<li><font face="华文中宋" color=blue>免费、开源</font></li>
+</ul>
+<p>You might wonder if WiX is already mature enough for the installation of large, complex applications with a large number of files to be deployed. Well, Microsoft itself uses WiX with all its major software packages. Just as an example, the setup of Microsoft Office was developed entirely with WiX.</p>
+<p><font face="华文中宋" color=blue>你可能会怀疑 WiX 对于拥有大量文件需要部署的大型复杂应用程序的安装是否已经足够成熟。好吧，Microsoft 已经使用 WiX 来处理所有的主要软件包。举个例子，Microsoft Office 就是完全使用 WiX 开发的。</font></p>
+<p>I'd like to express my thanks to Rob Mensching for creating the toolset in the first place, and to Neil Sleightholm, Vadym Stetsyak, Robert Pickering, Marc Borgers, John DeSoi, Markus Karg, Greg Glass, Stefan Krüger, Nobuo Kihara, Phil Wilson, Peter Tewkesbury, Nicholas Muguira, David Adams, Mike Green, Chesong Lee and Christophe Michel for the material contributed to the tutorial.</p>
+<p>(Ed. note: FireGiant wants to thank Gábor DEÁK JAHN for creating and hosting the WiX Tutorial for so many years.)</p>
+<p><font face="华文中宋" color=blue>我想向最先创建这套工具的 Rob Mensching 表达谢意，同时还要感谢 Neil Sleightholm, Vadym Stetsyak, Robert Pickering, Marc Borgers, John DeSoi, Markus Karg, Greg Glass, Stefan Krüger, Nobuo Kihara, Phil Wilson, Peter Tewkesbury, Nicholas Muguira, David Adams, Mike Green, Chesong Lee and Christophe Michel，谢谢他们对于本教程的贡献。</font></p>
+<p><font face="华文中宋" color=blue>（注意：FireGiant 感谢 Gábor DEÁK JAHN 多年来创建和搭建 WiX 教程所付出的努力。）</font></p>
+<h3 id="pages-in-this-chapter">Pages in this Chapter</h3>
+<ul>
+<li><a href="../0_Getting_Started/0_Getting_Started/"> Getting Started</a></li>
+<li><a href="../1_User_Interface/0_User_Interface/"> User Interface</a></li>
+<li><a href="../2_Events_and_Actions/0_Events_and_Actions/"> Events and Actions</a></li>
+<li><a href="3_Upgrades_and_Modularization/0_Upgrades_and_Modularization"> Upgrades and Modularization</a></li>
+<li><a href="4_Net_and_.NET/0_Net_and_.NET"> Net and .NET</a></li>
+<li><a href="https://www.firegiant.com/wix/tutorial/com-expression-syntax-miscellanea/"> COM, Expression Syntax, Miscellanea</a></li>
+<li><a href="../6_SQL/0_SQL/"> SQL</a></li>
+<li><a href="7_User_Interface_Revisited/0_User_Interface_Revisited"> User Interface Revisited</a></li>
+<li><a href="../8_Transforms/0_Transforms/"> Transforms</a></li>
+<li><a href="../9_Standard_Libraries/0_Standard_Libraries/"> Standard Libraries</a></li>
+<li><a href="https://www.firegiant.com/wix/tutorial/localization/"> Localization</a></li>
+</ul></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

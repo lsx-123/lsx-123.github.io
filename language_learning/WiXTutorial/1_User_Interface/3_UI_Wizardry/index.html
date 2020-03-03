@@ -4,14 +4,14 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="None">
         
         
-        <link rel="shortcut icon" href="img/favicon.ico">
-        <title>Talentaylor's Page</title>
-        <link href="css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">
+        
+        <link rel="shortcut icon" href="../../../../img/favicon.ico">
+        <title>UI Wizardry - Talentaylor's Page</title>
+        <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/color-brewer.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -19,13 +19,13 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <script src="js/jquery-1.10.2.min.js" defer></script>
-        <script src="js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="../../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../../js/bootstrap-3.0.3.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
-    <body class="homepage">
+    <body>
 
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
@@ -39,7 +39,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href=".">Talentaylor's Page</a>
+                    <a class="navbar-brand" href="../../../..">Talentaylor's Page</a>
                 </div>
 
                 <!-- Expanded navigation -->
@@ -51,19 +51,19 @@
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="language_learning/CSharpContent/">C#</a>
+    <a href="../../../CSharpContent/">C#</a>
 </li>
                                     
 <li >
-    <a href="language_learning/PythonContent/">Python</a>
+    <a href="../../../PythonContent/">Python</a>
 </li>
                                     
 <li >
-    <a href="language_learning/OpenGLContent/">OpenGL</a>
+    <a href="../../../OpenGLContent/">OpenGL</a>
 </li>
                                     
 <li >
-    <a href="language_learning/WiXTutorial/WiX_Toolset_Tutorial/">WiXToolset</a>
+    <a href="../../WiX_Toolset_Tutorial/">WiXToolset</a>
 </li>
                                 </ul>
                             </li>
@@ -72,20 +72,20 @@
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="interests/build_blog/">blog</a>
+    <a href="../../../../interests/build_blog/">blog</a>
 </li>
                                     
 <li >
-    <a href="interests/git/git/">git</a>
+    <a href="../../../../interests/git/git/">git</a>
 </li>
                                     
 <li >
-    <a href="interests/markdown/">Markdown</a>
+    <a href="../../../../interests/markdown/">Markdown</a>
 </li>
                                 </ul>
                             </li>
                             <li >
-                                <a href="about_me/">关于我</a>
+                                <a href="../../../../about_me/">关于我</a>
                             </li>
                         </ul>
 
@@ -103,13 +103,61 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#talentaylors-page">Talentaylor's Page</a></li>
+        <li class="main active"><a href="#ui-wizardry">UI Wizardry</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="talentaylors-page">Talentaylor's Page</h1>
-<p>Welcome to Talentaylor's Page!</p></div>
+<h1 id="ui-wizardry">UI Wizardry</h1>
+<p>And here comes the real magic. WixUI has five different flavors, depending on how sophisticated you want your user interface to be:</p>
+<ul>
+<li><em>WixUI_Mondo</em> offers the complete interface, welcome page, license agreement, setup type (typical, custom and complete), allows for feature customization, browsing for the target directory and offers disk costing. Maintenance mode dialogs are also included. You should use this flavor when some of your product's features shouldn't be installed by default (in other words, there is a significant and meaningful difference between typical and complete installs).</li>
+<li><em>WixUI_FeatureTree</em> is similar to the full set but it doesn't allow the user to chose between setup types. It always assumes Custom and goes directly to the feature customization dialog after the user has accepted the license agreement.</li>
+<li><em>WixUI_InstallDir</em> allows the user to select a destination directory but without presenting the usual customized features page. After having selected the directory, the installation will proceed automatically*.</li>
+<li><em>WixUI_Minimal</em> features a simplistic user interface with a single dialog combining the welcome and license agreement pages. After that, the installation goes on automatically without allowing the user to customize anything. Use it when your application has no optional features to install.</li>
+<li><em>WixUI_Advanced</em> is rather similar to WixUI_Minimal as it offers a simple, one-click install but it also allows selecting features and folders if the user chooses to do so.</li>
+</ul>
+<p>*Note that if you use the WixUI_InstallDir dialog set, you'll have to provide an extra property somewhere in your source:</p>
+<pre><code class="xml">&lt;Property Id=&quot;WIXUI_INSTALLDIR&quot; Value=&quot;INSTALLDIR&quot; /&gt;
+</code></pre>
+
+<p>In order to get a full user interface, all we have to do is to add two lines to include the WixUI interface library into our project:</p>
+<pre><code class="xml">&lt;UIRef Id=&quot;WixUI_Mondo&quot; /&gt;
+&lt;UIRef Id=&quot;WixUI_ErrorProgressText&quot; /&gt;
+</code></pre>
+
+<p>The first reference includes the appropriate user interface library but it doesn't automatically use the localized (or modified, in case of English) error and action texts in the language files. Without the second reference, the installer package will be slightly smaller and will use the stock messages inside Windows Installer.</p>
+<p>And, finally, we finish it just like in our earlier samples:</p>
+<pre><code class="xml">    &lt;Icon Id=&quot;Foobar10.exe&quot; SourceFile=&quot;FoobarAppl10.exe&quot; /&gt;
+  &lt;/Product&gt;
+&lt;/Wix&gt;
+</code></pre>
+
+<p>All the user interface variants come in a common precompiled library. We simply link against this extension library using the command line switch we have already mentioned. When working inside an integrated development environment, we have to add a reference to this library to achieve the same effect.</p>
+<pre><code class="bash">candle.exe SampleWixUI.wxs
+light.exe -ext WixUIExtension SampleWixUI.wixobj
+</code></pre>
+
+<p>You can customize some visual aspects of the user interface by simply providing replacement files. The default ones reside inside the toolset but you're allowed to create your own replacement bitmaps, icons and license text there. You can also replace selected files, not all of them. Their paths are stored in variables that you can specify either on the command line or directly in the source code:</p>
+<pre><code class="xml">&lt;WixVariable Id=&quot;WixUILicenseRtf&quot; Value=&quot;path\License.rtf&quot; /&gt;
+&lt;WixVariable Id=&quot;WixUIBannerBmp&quot; Value=&quot;path\banner.bmp&quot; /&gt;
+&lt;WixVariable Id=&quot;WixUIDialogBmp&quot; Value=&quot;path\dialog.bmp&quot; /&gt;
+&lt;WixVariable Id=&quot;WixUIExclamationIco&quot; Value=&quot;path\exclamation.ico&quot; /&gt;
+&lt;WixVariable Id=&quot;WixUIInfoIco&quot; Value=&quot;path\information.ico&quot; /&gt;
+&lt;WixVariable Id=&quot;WixUINewIco&quot; Value=&quot;path\new.ico&quot; /&gt;
+&lt;WixVariable Id=&quot;WixUIUpIco&quot; Value=&quot;path\up.ico&quot; /&gt;
+</code></pre>
+
+<p>Their meaning and details are:</p>
+<ul>
+<li>WixUIBannerBmp 493 by 58 pixels, this bitmap will appear at the top of all but the first page of the installer.</li>
+<li>WixUIDialogBmp 493 by 312 pixels, this bitmap will appear on the first page of the installer.</li>
+<li>WixUIExclamationIco 32 by 32 pixels, exclamation mark icon.</li>
+<li>WixUIInfoIco 32 by 32 pixels, information sign icon.</li>
+<li>WixUINewIco 16 by 16 pixels, new folder icon.</li>
+<li>WixUIUpIco 16 by 16 pixels, parent folder icon.</li>
+<li>WixUILicenseRtf Preferably, use a simple editor like Wordpad to create it, or if you insist on overly complex applications like Word, consider resaving the final version from Wordpad, anyway. The RTF will be less complicated and smaller.</li>
+</ul></div>
         </div>
 
         <footer class="col-md-12">
@@ -117,11 +165,11 @@
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = ".",
+            var base_url = "../../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="js/base.js" defer></script>
-        <script src="search/main.js" defer></script>
+        <script src="../../../../js/base.js" defer></script>
+        <script src="../../../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
     <div class="modal-dialog">
@@ -189,8 +237,3 @@
 
     </body>
 </html>
-
-<!--
-MkDocs version : 1.0.4
-Build Date UTC : 2020-03-03 08:01:19
--->

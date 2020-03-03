@@ -4,14 +4,14 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="None">
         
         
-        <link rel="shortcut icon" href="img/favicon.ico">
-        <title>Talentaylor's Page</title>
-        <link href="css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">
+        
+        <link rel="shortcut icon" href="../../../../img/favicon.ico">
+        <title>Queueing Up - Talentaylor's Page</title>
+        <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/color-brewer.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -19,13 +19,13 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <script src="js/jquery-1.10.2.min.js" defer></script>
-        <script src="js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="../../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../../js/bootstrap-3.0.3.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
-    <body class="homepage">
+    <body>
 
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
@@ -39,7 +39,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href=".">Talentaylor's Page</a>
+                    <a class="navbar-brand" href="../../../..">Talentaylor's Page</a>
                 </div>
 
                 <!-- Expanded navigation -->
@@ -51,19 +51,19 @@
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="language_learning/CSharpContent/">C#</a>
+    <a href="../../../CSharpContent/">C#</a>
 </li>
                                     
 <li >
-    <a href="language_learning/PythonContent/">Python</a>
+    <a href="../../../PythonContent/">Python</a>
 </li>
                                     
 <li >
-    <a href="language_learning/OpenGLContent/">OpenGL</a>
+    <a href="../../../OpenGLContent/">OpenGL</a>
 </li>
                                     
 <li >
-    <a href="language_learning/WiXTutorial/WiX_Toolset_Tutorial/">WiXToolset</a>
+    <a href="../../WiX_Toolset_Tutorial/">WiXToolset</a>
 </li>
                                 </ul>
                             </li>
@@ -72,20 +72,20 @@
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="interests/build_blog/">blog</a>
+    <a href="../../../../interests/build_blog/">blog</a>
 </li>
                                     
 <li >
-    <a href="interests/git/git/">git</a>
+    <a href="../../../../interests/git/git/">git</a>
 </li>
                                     
 <li >
-    <a href="interests/markdown/">Markdown</a>
+    <a href="../../../../interests/markdown/">Markdown</a>
 </li>
                                 </ul>
                             </li>
                             <li >
-                                <a href="about_me/">关于我</a>
+                                <a href="../../../../about_me/">关于我</a>
                             </li>
                         </ul>
 
@@ -103,13 +103,51 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#talentaylors-page">Talentaylor's Page</a></li>
+        <li class="main active"><a href="#queueing-up">Queueing Up</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="talentaylors-page">Talentaylor's Page</h1>
-<p>Welcome to Talentaylor's Page!</p></div>
+<h1 id="queueing-up">Queueing Up</h1>
+<p>There are many steps, so-called actions the Windows Installer carries out during an installation. The basic ones and those additional items required by the specific installer (this depends on the features you use, registry searches, user interface, etc) are automatically scheduled, in other words, their sequence is predetermined by the toolset when it creates the installer database. For a common .msi file, this might look like:</p>
+<ul>
+<li>AppSearch</li>
+<li>LaunchConditions</li>
+<li>ValidateProductID</li>
+<li>CostInitialize</li>
+<li>FileCost</li>
+<li>CostFinalize</li>
+<li>InstallValidate</li>
+<li>InstallInitialize</li>
+<li>ProcessComponents</li>
+<li>UnpublishFeatures</li>
+<li>RemoveShortcuts</li>
+<li>RemoveFiles</li>
+<li>InstallFiles</li>
+<li>CreateShortcuts</li>
+<li>RegisterUser</li>
+<li>RegisterProduct</li>
+<li>PublishFeatures</li>
+<li>PublishProduct</li>
+<li>InstallFinalize</li>
+<li>RemoveExistingProducts</li>
+</ul>
+<p>You can check out the actual action sequence in an installer using Orca, an MSI editor from the <a href="http://support.microsoft.com/kb/255905">Windows Installer SDK</a>.</p>
+<p>Reordering these events can be done using the appropriate tags. Actually, we have as many as four of them:</p>
+<ul>
+<li>AdminUISequence</li>
+<li>InstallUISequence</li>
+<li>AdminExecuteSequence</li>
+<li>InstallExecuteSequence</li>
+</ul>
+<p>The ones starting with <code>Admin</code> refer to administrative installs (launched using <code>msiexec /a</code>). These type of installations create a source image of the application onto the network so that users in the workgroup can later install from this source image instead of the original media. This functionality comes for free, we've never bothered with it so far, yet our previous samples can all be installed this way (try it!).</p>
+<p>So, for the moment, this only leaves two tags. <code>InstallExecuteSequence</code> is always consulted by the installer to determine the actions, <code>InstallUISequence</code> is only considered when the installer runs in full or reduced UI mode (yet another functionality to experiment with, try <code>msiexec</code>'s <code>/qn</code>, <code>/qb</code> and <code>/qr</code> switches). Because we need to schedule our registry search before the launch condition in all UI cases, insert that line into both tags. Compile and run, it should work now, keep renaming the registry key to check.</p>
+<p>You can see the sequence order numbers in Orca. Although you can use these numbers as well, it is much easier not to bother with them, just tell WiX the relative sequence of your actions: simply specify which sequence your action should come <code>Before</code> or <code>After</code>. To remove an action from the chain of execution, use the <code>Suppress=yes</code> attribute.</p>
+<pre><code class="xml">&lt;InstallExecuteSequence&gt;
+    &lt;LaunchConditions After='AppSearch' /&gt;
+    &lt;RemoveExistingProducts After='InstallFinalize' /&gt;
+&lt;/InstallExecuteSequence&gt;
+</code></pre></div>
         </div>
 
         <footer class="col-md-12">
@@ -117,11 +155,11 @@
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = ".",
+            var base_url = "../../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="js/base.js" defer></script>
-        <script src="search/main.js" defer></script>
+        <script src="../../../../js/base.js" defer></script>
+        <script src="../../../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
     <div class="modal-dialog">
@@ -189,8 +227,3 @@
 
     </body>
 </html>
-
-<!--
-MkDocs version : 1.0.4
-Build Date UTC : 2020-03-03 08:01:19
--->

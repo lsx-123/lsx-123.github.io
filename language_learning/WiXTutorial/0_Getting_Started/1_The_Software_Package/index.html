@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../../img/favicon.ico">
+        <title>The Software Package - Talentaylor's Page</title>
+        <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/color-brewer.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../../../..">Talentaylor's Page</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">语言 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../../../CSharpContent/">C#</a>
+</li>
+                                    
+<li >
+    <a href="../../../PythonContent/">Python</a>
+</li>
+                                    
+<li >
+    <a href="../../../OpenGLContent/">OpenGL</a>
+</li>
+                                    
+<li >
+    <a href="../../WiX_Toolset_Tutorial/">WiXToolset</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">工具 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../../../../interests/build_blog/">blog</a>
+</li>
+                                    
+<li >
+    <a href="../../../../interests/git/git/">git</a>
+</li>
+                                    
+<li >
+    <a href="../../../../interests/markdown/">Markdown</a>
+</li>
+                                </ul>
+                            </li>
+                            <li >
+                                <a href="../../../../about_me/">关于我</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#the-software-package">The Software Package</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="the-software-package">The Software Package</h1>
+<p>Our first WiX sample will install a very simple imaginary application: it consists of an executable, a DLL library and a user manual. We expect these files to be copied to an application specific folder. We will also want two shortcuts to appear in the usual place in the Start Menu, plus we will add an icon shortcut to the user desktop to launch our application.</p>
+<p><font face="华文中宋" color=blue>我们的第一个 WiX 例子将安装一个非常简单的想象的应用程序：他包含一个可执行文件、一个DLL库和一个用户手册。我们希望将这些文件拷贝到一个指定的应用程序文件夹。我们也希望有两个快捷键出现在开始菜单，另外，我们将添加一个图标快捷键至用户的桌面方便启动我们的应用程序。</font></p>
+<p>As simple as this install package will be, the underlying Windows Installer will offer a great deal of functionality, including automatic inclusion of our program in the Programs and Features Control Panel tool. To make sure that Windows Installer can keep track of our program, we have to provide some means of identification. Although all applications have human readable names, Windows will require a more unique identifier than a mere name: GUIDs (those long, hexadecimal numbers like CE26AD1E-00D5-4E03-8CBE-6DA5C23AA833) to identify every part of our package. GUIDs come for free, you can generate as many as you like any time. They are guaranteed to be unique, no matter who else asks for GUIDs on their computers, they will never collide with yours. There are many utilities to ask for GUIDs, including this very simple <a href="https://www.firegiant.com/system/files/samples/UUIDgen.c">C program</a> that can be compiled with practically any C/C++ compiler of your choice. If you use a different programming language, you can call the necessary Win32 functions (<code>CoCreateGuid</code> and <code>StringFromGUID2</code>) there, too. C compilers usually keep them in the <code>ole32.lib</code> library file, so if you receive linker errors, remember to link against this library as well. The Windows SDK you get by installing Visual Studio also contains a GUID-generation tool, available, for example, at <code>%ProgramFiles%\Microsoft SDKs\Windows\v7.1A\Bin\uuidgen.exe</code> or <code>%ProgramFiles%\Windows Kits\8.1\bin\x86\uuidgen.exe</code>.</p>
+<p><font face="华文中宋" color=blue>
+这个安装程序尽可能的简单，潜在的 Windows Installer 会提供大量的功能，包括自动集成到程序于<u>控制面板</u> 。为了保证 Windows Installer 可以跟踪我们的应用程序，我们需要提供一些标识。虽然所有的应用程序都有可读的名称，但是 Windows 需要一个唯一标识符——GUID（这是一种较长且16进制数字串，如 CE26AD1E-00D5-4E03-8CBE-6DA5C23AA833）来识别安装包中的每一部分，而不仅仅是一个名称。GUID 是免费的，你可以在任何时候生成任意多的 GUID。他们都能保证唯一，无论谁在其电脑上要求更多的GUID，都不会与你的冲突。有许多工具可以生成GUID，包括这个简单的<a href="https://www.firegiant.com/system/files/samples/UUIDgen.c">C语言程序</a>，可以使用任何C/C++编译器进行编译。如果你使用其他编程语言，你也可以调用Win32库中的函数（<code>CoCreateGuid()</code> 和 <code>StringFromGUID2()</code>）。C编译器通常保持在<code>ole32.lib</code>库文件中，因此如果遇到连接错误，记得再链接一次该库。安装 Visual Studio 时附带安装的Windows SDK也包含一个GUID生成工具，比如，<code>%ProgramFiles%\Microsoft SDKs\Windows\v7.1A\Bin\uuidgen.exe</code> 或者 <code>%ProgramFiles%\Windows Kits\8.1\bin\x86\uuidgen.exe</code>。</font></p>
+<p>Alternatively, many programmers' editors and integrated development environments can insert a freshly generated GUID into the source code on request. If the tool you use generates lowercase hexadecimal letters, convert them to uppercase before you present them to WiX.</p>
+<p><font face="华文中宋" color=blue>另外，程序员的编辑器和IDE可以根据需求向源代码中插入一个新生成的GUID。如果你所使用的工具生成GUID的是小写16进制字母，在WiX中使用前，请将其转换成大写的。</font></p>
+<p><strong>All GUIDs in this tutorial, including those in the downloadable samples, are invalid</strong>—the first section is always changed to <code>YOURGUID</code>. This also means that the samples cannot be built straight away, without providing your own GUIDs first (you get a <code>fatal error CNDL0027: The 'Id' attribute has an invalid value according to its data type.</code> if you try). This is a small inconvenience but it is necessary to avoid the remote chance of several people using any of the samples verbatim, forgetting to change the GUIDs, and creating a risk of collision out there in the wild. Also note that you have to replace the complete GUID: never mix parts coming from different GUIDs (in other words, don't replace YOURGUID alone, replace the whole number). GUIDs are only guaranteed to be unique if used exactly as they were generated.</p>
+<p><font face="华文中宋" color=blue><strong>本教程中的所有的GUID，包括那些可供下载的例子中，都是无效的</strong>，第一步都需要转换成你自己的GUID。这也意味着这些例子不能被直接编译（通常会得到这样的错误：<code>fatal error CNDL0027: The 'Id' attribute has an invalid value according to its data type.</code>）。虽然不方便，但可以避免</font></p>
+<p>To start with, you'll need two GUIDs, one for your product and one for the installation package (actually, for any real world project, you'll also need an <code>UpgradeCode</code> GUID; be sure to check out the other lessons before you ship anything). While the other two have to be kept on file because you will probably need to refer to them later, <code>Package</code> GUIDs need to be different with each package you create. To make it easier and less likely to forget to issue a new one, we can instruct WiX to autogenerate one by typing an asterisk---but remember, this only applies to package GUIDs: all other GUIDs will need to stay unique and kept recorded for times to come. This with all other textual information about the product will go into the very first part of our <code>SampleFirst.wxs</code> file:</p>
+<p><font face="华文中宋" color=blue></font></p>
+<pre><code class="xml">&lt;?xml version='1.0' encoding='windows-1252'?&gt;
+&lt;Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'&gt;
+    &lt;Product Name='Foobar 1.0' Manufacturer='Acme Ltd.'
+        Id='YOURGUID-86C7-4D14-AEC0-86416A69ABDE' 
+        UpgradeCode='YOURGUID-7349-453F-94F6-BCB5110BA4FD'
+        Language='1033' Codepage='1252' Version='1.0.0'&gt;
+    &lt;Package Id='*' Keywords='Installer' Description=&quot;Acme's Foobar 1.0 Installer&quot;
+        Comments='Foobar is a registered trademark of Acme Ltd.' Manufacturer='Acme Ltd.'
+        InstallerVersion='100' Languages='1033' Compressed='yes' SummaryCodepage='1252' /&gt;
+</code></pre>
+
+<p>Product names and descriptions depend on you, of course. For the <code>Version</code> attribute, use the standard <em>major.minor.build</em> format. Windows Installer will ignore an eventual fourth field, <em>.revision</em> as it provides other means to differentiate revisions.</p>
+<p><font face="华文中宋" color=blue></font></p>
+<p>As you know, XML is quite liberal for a format. Use indentation and empty lines as you see fit. Enclose all attribute values in quotes but you can choose from single and double quotes at will. This makes it very easy to write values containing a quote (like <code>Description</code> above), just make sure you use the other kind of quote to enclose the string.</p>
+<p><font face="华文中宋" color=blue></font></p>
+<p>You can use both UTF-8 and ANSI to create the XML. If you don't plan to use anything but the usual ASCII characters or those accented letters available in the standard ANSI character set, the <em>windows-1252</em> setting depicted in this example is quite satisfactory. If you need a larger or different character set in your user interface, change to UTF-8 and use the appropriate <a href="http://msdn2.microsoft.com/en-us/library/Aa369771.aspx">language and codepage IDs</a> For instance, for Japanese:</p>
+<p><font face="华文中宋" color=blue></font></p>
+<pre><code class="xml">&lt;?xml version='1.0' encoding='utf-8'?&gt;
+&lt;Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'&gt;
+  &lt;Product Language='1041' Codepage='932' ...&gt;
+  &lt;Package Languages='1041' SummaryCodepage='932' ...&gt;
+</code></pre></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../../js/base.js" defer></script>
+        <script src="../../../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

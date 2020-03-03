@@ -4,14 +4,14 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="None">
         
         
-        <link rel="shortcut icon" href="img/favicon.ico">
-        <title>Talentaylor's Page</title>
-        <link href="css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">
+        
+        <link rel="shortcut icon" href="../../../../img/favicon.ico">
+        <title>Think Localized - Talentaylor's Page</title>
+        <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/color-brewer.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -19,13 +19,13 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <script src="js/jquery-1.10.2.min.js" defer></script>
-        <script src="js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="../../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../../js/bootstrap-3.0.3.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
-    <body class="homepage">
+    <body>
 
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
@@ -39,7 +39,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href=".">Talentaylor's Page</a>
+                    <a class="navbar-brand" href="../../../..">Talentaylor's Page</a>
                 </div>
 
                 <!-- Expanded navigation -->
@@ -51,19 +51,19 @@
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="language_learning/CSharpContent/">C#</a>
+    <a href="../../../CSharpContent/">C#</a>
 </li>
                                     
 <li >
-    <a href="language_learning/PythonContent/">Python</a>
+    <a href="../../../PythonContent/">Python</a>
 </li>
                                     
 <li >
-    <a href="language_learning/OpenGLContent/">OpenGL</a>
+    <a href="../../../OpenGLContent/">OpenGL</a>
 </li>
                                     
 <li >
-    <a href="language_learning/WiXTutorial/WiX_Toolset_Tutorial/">WiXToolset</a>
+    <a href="../../WiX_Toolset_Tutorial/">WiXToolset</a>
 </li>
                                 </ul>
                             </li>
@@ -72,20 +72,20 @@
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="interests/build_blog/">blog</a>
+    <a href="../../../../interests/build_blog/">blog</a>
 </li>
                                     
 <li >
-    <a href="interests/git/git/">git</a>
+    <a href="../../../../interests/git/git/">git</a>
 </li>
                                     
 <li >
-    <a href="interests/markdown/">Markdown</a>
+    <a href="../../../../interests/markdown/">Markdown</a>
 </li>
                                 </ul>
                             </li>
                             <li >
-                                <a href="about_me/">关于我</a>
+                                <a href="../../../../about_me/">关于我</a>
                             </li>
                         </ul>
 
@@ -103,13 +103,36 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#talentaylors-page">Talentaylor's Page</a></li>
+        <li class="main active"><a href="#think-localized">Think Localized</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="talentaylors-page">Talentaylor's Page</h1>
-<p>Welcome to Talentaylor's Page!</p></div>
+<h1 id="think-localized">Think Localized</h1>
+<p>If we add our own dialogs to WixUI, we might want them to be localized as well. That doesn't require too much extra work. The main source file stays the same, we only have to modify our new dialog in <code>UserRegistrationDlg.wxs</code>. Instead of hardwired texts we will use localizable string references:</p>
+<pre><code class="xml">&lt;Fragment&gt;
+...
+    &lt;Dialog Id=&quot;UserRegistrationDlg&quot; Width=&quot;370&quot; Height=&quot;270&quot; Title=&quot;!(loc.UserRegistrationDlg_Title)&quot; NoMinimize=&quot;yes&quot;&gt;
+        &lt;Control Id=&quot;NameLabel&quot; Type=&quot;Text&quot; X=&quot;45&quot; Y=&quot;73&quot; Width=&quot;100&quot; Height=&quot;15&quot; TabSkip=&quot;no&quot; Text=&quot;!(loc.UserRegistrationDlg_UserName)&quot; /&gt;
+        &lt;Control Id=&quot;OrganizationLabel&quot; Type=&quot;Text&quot; X=&quot;45&quot; Y=&quot;110&quot; Width=&quot;100&quot; Height=&quot;15&quot; TabSkip=&quot;no&quot; Text=&quot;!(loc.UserRegistrationDlg_Organization)&quot; /&gt;
+...
+&lt;/Fragment&gt;
+</code></pre>
+
+<p>Next, create localization files listing these strings in the appropriate culture. Let's call our file <code>UserRegistrationDlg.fr-fr.wxl</code> (the name is up to you, the extension is fixed). In the <code>WixLocalization</code> tag you have to specify the culture and its codepage. Create parallel copies for other languages you want to localize to.</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;WixLocalization Culture=&quot;fr-fr&quot; Codepage=&quot;1252&quot; xmlns=&quot;http://schemas.microsoft.com/wix/2006/localization&quot;&gt;
+    &lt;String Id=&quot;UserRegistrationDlg_Title&quot; Overridable=&quot;yes&quot;&gt;???&lt;/String&gt;
+    &lt;String Id=&quot;UserRegistrationDlg_UserName&quot; Overridable=&quot;yes&quot;&gt;???&lt;/String&gt;
+    &lt;String Id=&quot;UserRegistrationDlg_Organization&quot; Overridable=&quot;yes&quot;&gt;???&lt;/String&gt;
+    ...
+&lt;/WixLocalization&gt;
+</code></pre>
+
+<p>To build the installer from the <a href="https://www.firegiant.com/system/files/samples/SampleWixUIAddDlgLoc.zip">source</a>, we also need to reference the localization file. In the integrated environment, just include the file in your project and it will be used automatically.</p>
+<pre><code class="bash">candle.exe SampleWixUIAddDlgLoc.wxs UserRegistrationDlg.wxs
+light.exe -ext WixUIExtension -cultures:fr-fr -loc UserRegistrationDlg.fr-fr.wxl -out SampleWixUIAddDlgLoc.msi SampleWixUIAddDlgLoc.wixobj UserRegistrationDlg.wixobj
+</code></pre></div>
         </div>
 
         <footer class="col-md-12">
@@ -117,11 +140,11 @@
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = ".",
+            var base_url = "../../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="js/base.js" defer></script>
-        <script src="search/main.js" defer></script>
+        <script src="../../../../js/base.js" defer></script>
+        <script src="../../../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
     <div class="modal-dialog">
@@ -189,8 +212,3 @@
 
     </body>
 </html>
-
-<!--
-MkDocs version : 1.0.4
-Build Date UTC : 2020-03-03 08:01:19
--->

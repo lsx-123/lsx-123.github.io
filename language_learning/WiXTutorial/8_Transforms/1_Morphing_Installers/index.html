@@ -4,14 +4,14 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="None">
         
         
-        <link rel="shortcut icon" href="img/favicon.ico">
-        <title>Talentaylor's Page</title>
-        <link href="css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">
+        
+        <link rel="shortcut icon" href="../../../../img/favicon.ico">
+        <title>Morphing Installers - Talentaylor's Page</title>
+        <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/color-brewer.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -19,13 +19,13 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <script src="js/jquery-1.10.2.min.js" defer></script>
-        <script src="js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="../../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../../js/bootstrap-3.0.3.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
-    <body class="homepage">
+    <body>
 
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
@@ -39,7 +39,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href=".">Talentaylor's Page</a>
+                    <a class="navbar-brand" href="../../../..">Talentaylor's Page</a>
                 </div>
 
                 <!-- Expanded navigation -->
@@ -51,19 +51,19 @@
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="language_learning/CSharpContent/">C#</a>
+    <a href="../../../CSharpContent/">C#</a>
 </li>
                                     
 <li >
-    <a href="language_learning/PythonContent/">Python</a>
+    <a href="../../../PythonContent/">Python</a>
 </li>
                                     
 <li >
-    <a href="language_learning/OpenGLContent/">OpenGL</a>
+    <a href="../../../OpenGLContent/">OpenGL</a>
 </li>
                                     
 <li >
-    <a href="language_learning/WiXTutorial/WiX_Toolset_Tutorial/">WiXToolset</a>
+    <a href="../../WiX_Toolset_Tutorial/">WiXToolset</a>
 </li>
                                 </ul>
                             </li>
@@ -72,20 +72,20 @@
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="interests/build_blog/">blog</a>
+    <a href="../../../../interests/build_blog/">blog</a>
 </li>
                                     
 <li >
-    <a href="interests/git/git/">git</a>
+    <a href="../../../../interests/git/git/">git</a>
 </li>
                                     
 <li >
-    <a href="interests/markdown/">Markdown</a>
+    <a href="../../../../interests/markdown/">Markdown</a>
 </li>
                                 </ul>
                             </li>
                             <li >
-                                <a href="about_me/">关于我</a>
+                                <a href="../../../../about_me/">关于我</a>
                             </li>
                         </ul>
 
@@ -103,13 +103,58 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#talentaylors-page">Talentaylor's Page</a></li>
+        <li class="main active"><a href="#morphing-installers">Morphing Installers</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="talentaylors-page">Talentaylor's Page</h1>
-<p>Welcome to Talentaylor's Page!</p></div>
+<h1 id="morphing-installers">Morphing Installers</h1>
+<p>One interesting reason to use transforms is to modify the user interface strings to another language. As we have already discussed earlier, WiX allows the WixUI interface languages to be localized. Using that, we could provide installers in various languages. But if we need more than one language, this simpler solution only allows us to create parallel installers, all of them in their own language all right but storing all files to be deployed several times.</p>
+<p>Transforms can help us in this case. We can start with our basic installer (this could be English or anything else). Each language we add will practically be an on-the-fly patch, called by Windows Installer before the first page appears, to translate the UI strings to a specific language. Thus, all languages will share the same installation package, the files to be installed only appearing once, and each new language will only add a small amount to the package size.</p>
+<p>We can start our installation with a small bootstrapper. The bootstrapper can list the available languages, maybe defaulting to the language of the operating system it is running on but allowing the user to chose any language. When finished, the bootstrapper can launch the actual installation specifying which transform to apply.</p>
+<p>To create such a multi-language installer, there is surprisingly little to change:</p>
+<pre><code class="xml">&lt;?xml version='1.0' encoding='windows-1252'?&gt;
+&lt;Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'&gt;
+
+  &lt;Product Name='Foobar 1.0' Id='YOURGUID-86C7-4D14-AEC0-86416A69ABDE' UpgradeCode='YOURGUID-7349-453F-94F6-BCB5110BA4FD'
+    Language='1033' Codepage='$(var.codepage)' Version='1.0.0' Manufacturer='Acme Ltd.'&gt;
+
+    &lt;Package Id='*' Keywords='Installer' Description=&quot;Acme's Foobar 1.0 Installer&quot;
+      Comments='Foobar is a registered trademark of Acme Ltd.' Manufacturer='Acme Ltd.'
+      InstallerVersion='100' Languages='1033' Compressed='yes' SummaryCodepage='$(var.codepage)' /&gt;
+
+  ...
+&lt;/Wix&gt;
+</code></pre>
+
+<p>As the first step, we will build these separate localized installers, much like before but each file should have the appropriate codepage specified, as shown in the table of supported languages:</p>
+<pre><code class="bash">candle.exe SampleMulti.wxs -dcodepage=1252
+light.exe -ext WixUIExtension -cultures:en-us -out SampleMulti.msi SampleMulti.wixobj
+
+candle.exe SampleMulti.wxs -dcodepage=1250
+light.exe -ext WixUIExtension -cultures:hu-hu -out Sample_Hu-hu.msi SampleMulti.wixobj
+
+candle.exe SampleMulti.wxs -dcodepage=1252
+light.exe -ext WixUIExtension -cultures:fr-fr -out Sample_Fr-fr.msi SampleMulti.wixobj
+</code></pre>
+
+<p>Then WiX's transform tool, Torch, compares each localized installer to the base one (SampleMulti.msi) and creates an .mst transform file in turn comprising the differences between the two:</p>
+<pre><code class="bash">torch.exe -p -t language SampleMulti.msi Sample_Hu-hu.msi -out hu-hu.mst
+torch.exe -p -t language SampleMulti.msi Sample_Fr-fr.msi -out fr-fr.mst
+</code></pre>
+
+<p>Our bootstrap installer can then call the base installer package with the appropriate language package specified:</p>
+<pre><code class="bash">msiexec /i SampleMulti.msi TRANSFORMS=&quot;fr-fr.mst&quot;
+</code></pre>
+
+<p>Apart from the need for the bootstrapper, we also need to distribute the transform files separately. A better approach (not currently supported by WiX but available with the <a href="https://www.firegiant.com/system/files/samples/EmbedTransform.zip">EmbedTransform tool</a> is to embed the transforms into the original package:</p>
+<pre><code class="bash">EmbedTransform.exe SampleMulti.msi hu-hu.mst
+EmbedTransform.exe SampleMulti.msi fr-fr.mst
+</code></pre>
+
+<p>The only difference in its use is that a colon preceding the name instructs Windows Installer to look for the transform file inside the package:</p>
+<pre><code class="bash">msiexec /i SampleMulti.msi TRANSFORMS=&quot;:fr-fr.mst&quot;
+</code></pre></div>
         </div>
 
         <footer class="col-md-12">
@@ -117,11 +162,11 @@
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = ".",
+            var base_url = "../../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="js/base.js" defer></script>
-        <script src="search/main.js" defer></script>
+        <script src="../../../../js/base.js" defer></script>
+        <script src="../../../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
     <div class="modal-dialog">
@@ -189,8 +234,3 @@
 
     </body>
 </html>
-
-<!--
-MkDocs version : 1.0.4
-Build Date UTC : 2020-03-03 08:01:19
--->
